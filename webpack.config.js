@@ -1,6 +1,5 @@
 const { resolve } = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const nodeExternals = require("webpack-node-externals");
 
 const isProd = process.env.NODE_ENV === "production";
 const buildDir = resolve(__dirname, "build");
@@ -49,11 +48,6 @@ const serverConfig = {
     path: buildDir,
     filename: "server.js",
   },
-  // externals: [nodeExternals()],
-  //   node: {
-  //     __dirname: false,
-  //     __filename: false,
-  //   },
 };
 
 module.exports = [clientConfig, serverConfig];
