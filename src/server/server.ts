@@ -11,11 +11,8 @@ app.use(express.static(path.join(__dirname, ".")));
 
 const server = http.createServer(app);
 
-let port = 4000;
-let ip = "127.0.0.1";
-
-server.listen(port, ip, function listening() {
-  console.log("Listening on %d", server.address().port);
-});
+let port = process.env.PORT || 4000;
+server.listen(port);
+server.on("listening", () => console.log("Express listening"));
 
 export {};
