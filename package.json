@@ -3,8 +3,7 @@
   "version": "1.0.0",
   "description": "Lone wolf",
   "scripts": {
-    "build": "webpack",
-    "start": "npm run build && node build/server.js"
+    "build": "webpack"
   },
   "repository": {
     "type": "git",
