@@ -1,17 +1,13 @@
-import { useAppSelector, useAppDispatch, increment } from "../store/store";
+import { useAppSelector, useAppDispatch } from "../store/store";
 
 const App: React.FC = () => {
   const dispatch = useAppDispatch();
-  const count = useAppSelector((state) => state.slice.count);
+  const nameIsNotSet = useAppSelector((state) => state.players.local === null);
 
-  const incrementCount = () => dispatch(increment());
-
-  return (
-    <>
-      <div>{`The count is ${count}`}</div>
-      <button onClick={incrementCount}>+</button>
-    </>
-  );
+  // if (nameIsNotSet) {
+  //   return <PlayerCreation/>
+  // }
+  return null;
 };
 
 export default App;
