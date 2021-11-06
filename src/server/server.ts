@@ -20,15 +20,12 @@ server.on("listening", () => console.log("Express listening"));
 const socketServer = new WebSocketServer({ server });
 
 const broadcast = (message: string) => {
+  console.log(`Broadcasting ${message}`);
   socketServer.clients.forEach((client) => client.send(message));
 };
 
 socketServer.on("connection", (ws) => {
-  console.log("Connected");
-  broadcast("A new client connected");
-  ws.send("Connected");
-  ws.on("message", (message) => {
-    console.log(`Received ${message}`);
-    ws.send(`Response to "${message}"`);
+  ws.on("message", (message: string) => {
+    broadcast(JSON.stringify(JSON.parse(message)));
   });
 });

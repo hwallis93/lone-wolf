@@ -1,16 +1,22 @@
+import { store } from "../store/store";
+
 const url = window.location.href.replace(/^https?:/, "ws:");
 const socket = new WebSocket(url);
 
 const queue: string[] = [];
 
-socket.addEventListener("message", (message) => {
-  console.log(message);
-});
-socket.addEventListener("open", () => {
+socket.onopen = () => {
   queue.forEach((message) => socket.send(message));
-});
+};
 
-export const sendMessage = (message: string) => {
+socket.onmessage = (message: MessageEvent<string>) => {
+  store.dispatch({ type: "fromServer", payload: JSON.parse(message.data) });
+};
+
+export const sendObject = (object: Record<string, unknown>) =>
+  sendString(JSON.stringify(object));
+
+export const sendString = (message: string) => {
   socket.readyState === socket.OPEN
     ? socket.send(message)
     : queue.push(message);
