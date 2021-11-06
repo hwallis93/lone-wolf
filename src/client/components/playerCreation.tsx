@@ -1,6 +1,7 @@
 import { ChangeEvent, KeyboardEvent, useState } from "react";
 import { addPlayer, setLocalPlayer } from "../../store/player";
 import { useAppDispatch } from "../../store/store";
+import { Responsibility } from "../types";
 
 const PlayerCreation: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -10,8 +11,17 @@ const PlayerCreation: React.FC = () => {
     setInput(event.target.value);
   };
   const submit = () => {
-    dispatch(setLocalPlayer(input));
-    dispatch(addPlayer({ name: input, responsibilities: [] }));
+    const isSecretGMCode = input === "__henrythegm";
+
+    if (isSecretGMCode) {
+      dispatch(setLocalPlayer("Henry"));
+      dispatch(
+        addPlayer({ name: "Henry", responsibilities: [Responsibility.GM] })
+      );
+    } else {
+      dispatch(setLocalPlayer(input));
+      dispatch(addPlayer({ name: input, responsibilities: [] }));
+    }
   };
   const handleKeyPress = (event: KeyboardEvent<HTMLInputElement>) => {
     if (event.key === "Enter") submit();

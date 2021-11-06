@@ -1,4 +1,5 @@
 import { useAppSelector } from "../../store/store";
+import MainWindow from "./mainWindow";
 import PlayerCreation from "./playerCreation";
 
 const App: React.FC = () => {
@@ -7,7 +8,7 @@ const App: React.FC = () => {
   if (nameIsNotSet) {
     return <PlayerCreation />;
   }
-  return null;
+  return <MainWindow />;
 };
 
 export default App;

@@ -1,9 +1,9 @@
 export enum Responsibility {
-  GM,
-  GOLD,
-  ENDURANCE_POINTS,
-  ITEMS,
-  WEAPONS,
+  GM = "GM",
+  GOLD = "Gold",
+  ENDURANCE_POINTS = "Endurance Points",
+  ITEMS = "Items",
+  WEAPONS = "Weapons",
 }
 export interface Player {
   name: string;
