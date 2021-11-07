@@ -11,7 +11,7 @@ const MainWindow: React.FC = () => {
   const playerIsGM = localPlayer === secretGmCode;
 
   return (
-    <div style={{ display: "flex" }}>
+    <div style={{ display: "flex", gap: "50px" }}>
       <CharacterSheet />
       <Players />
       {playerIsGM ? <ControlPanel /> : null}

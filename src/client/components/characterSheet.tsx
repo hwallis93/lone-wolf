@@ -11,7 +11,7 @@ const CharacterSheet: React.FC = () => {
   } = useAppSelector((state) => state.lonewolf);
 
   return (
-    <div style={{ paddingRight: "40px" }}>
+    <div>
       <h1>Character Sheet</h1>
       <div style={{ display: "flex", flexDirection: "column" }}>
         <span>{`Endurance Points (max. ${endurancePointsMax}): ${endurancePoints}`}</span>

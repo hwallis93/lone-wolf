@@ -2,13 +2,13 @@ Lone Wolf
 
 TODO:
 - Control panel:
-  - Dish out player responsibilities <-- next
-  - Set any Redux state
   - Reset character on death
 - Editable character sheet
 - Consider character creation flow
 - Dice
 - Combat
+- People disconnecting?
+  - Then rejoining?
 
 TO FIX:
 - Only create one websocket client per client

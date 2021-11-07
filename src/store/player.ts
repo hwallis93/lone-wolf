@@ -17,7 +17,7 @@ export const players = createSlice({
     addPlayer: (state, action: PayloadAction<Player>) => {
       state.all.push(action.payload);
     },
-    overwriteAllPlayers: (state, action: PayloadAction<Player[]>) => {
+    overwritePlayers: (state, action: PayloadAction<Player[]>) => {
       state.all = action.payload;
     },
     setLocalPlayer: (state, action: PayloadAction<string>) => {
@@ -26,5 +26,4 @@ export const players = createSlice({
   },
 });
 
-export const { addPlayer, setLocalPlayer, overwriteAllPlayers } =
-  players.actions;
+export const { addPlayer, setLocalPlayer, overwritePlayers } = players.actions;

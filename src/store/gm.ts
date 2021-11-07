@@ -14,7 +14,10 @@ export const gm = createSlice({
     setGmName: (state, action: PayloadAction<string>) => {
       state.name = action.payload;
     },
+    overwriteGm: (_state, action: PayloadAction<GmState>) => {
+      return action.payload;
+    },
   },
 });
 
-export const { setGmName } = gm.actions;
+export const { setGmName, overwriteGm } = gm.actions;

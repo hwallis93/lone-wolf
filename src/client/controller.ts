@@ -1,4 +1,4 @@
-import { overwriteAllPlayers } from "../store/player";
+import { overwritePlayers } from "../store/player";
 import { store } from "../store/store";
 import { Player, Responsibility } from "./types";
 import cloneDeep from "lodash.clonedeep";
@@ -7,7 +7,7 @@ export const cycleResponsibilities = () => {
   const players = store.getState().players.all;
   const newResps = reCalculateResponsibilities(players);
 
-  store.dispatch(overwriteAllPlayers(newResps));
+  store.dispatch(overwritePlayers(newResps));
 };
 
 const reCalculateResponsibilities = (unsortedPlayers: Player[]) => {

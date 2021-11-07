@@ -27,7 +27,11 @@ const initialState: LoneWolfState = {
 export const loneWolf = createSlice({
   name: "loneWolf",
   initialState,
-  reducers: {},
+  reducers: {
+    overwriteLonewolf: (_state, action: PayloadAction<LoneWolfState>) => {
+      return action.payload;
+    },
+  },
 });
 
-export const {} = loneWolf.actions;
+export const { overwriteLonewolf } = loneWolf.actions;
