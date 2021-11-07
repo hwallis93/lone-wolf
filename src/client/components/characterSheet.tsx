@@ -1,8 +1,14 @@
 import { useAppSelector } from "../../store/store";
 
 const CharacterSheet: React.FC = () => {
-  const { gold, endurancePoints, endurancePointsMax, items, disciplines } =
-    useAppSelector((state) => state.lonewolf);
+  const {
+    gold,
+    endurancePoints,
+    endurancePointsMax,
+    items,
+    disciplines,
+    weapons,
+  } = useAppSelector((state) => state.lonewolf);
 
   return (
     <div style={{ paddingRight: "40px" }}>
@@ -20,6 +26,12 @@ const CharacterSheet: React.FC = () => {
         <ul>
           {items.map((item) => (
             <li>{item}</li>
+          ))}
+        </ul>
+        Weapons (max. 2)
+        <ul>
+          {weapons.map((weapon) => (
+            <li>{weapon}</li>
           ))}
         </ul>
       </div>

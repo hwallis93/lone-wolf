@@ -8,6 +8,7 @@ TODO:
 - Editable character sheet
 - Character creation
 - Dice
+- Combat
 
 TO FIX:
 - Only create one websocket client per client

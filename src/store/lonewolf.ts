@@ -1,12 +1,13 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { Discipline, Player } from "../client/types";
+import { Discipline, Weapon } from "../client/types";
 
 interface LoneWolfState {
-  gold: number;
-  endurancePointsMax: number;
-  endurancePoints: number;
-  items: string[];
   disciplines: Discipline[];
+  endurancePoints: number;
+  endurancePointsMax: number;
+  gold: number;
+  items: string[];
+  weapons: Weapon[];
 }
 const initialState: LoneWolfState = {
   gold: 12,
@@ -20,6 +21,7 @@ const initialState: LoneWolfState = {
     Discipline.WEAPONSKILL,
     Discipline.SIXTH_SENSE,
   ],
+  weapons: [Weapon.AXE, Weapon.SPEAR],
 };
 
 export const loneWolf = createSlice({
