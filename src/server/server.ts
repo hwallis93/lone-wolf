@@ -3,6 +3,11 @@ import http from "http";
 import path from "path";
 
 import { WebSocketServer } from "ws";
+import { overwriteGm } from "../store/gm";
+import { overwriteLonewolf } from "../store/lonewolf";
+import { overwritePlayers } from "../store/player";
+
+import { store } from "./store";
 
 const app = express();
 
@@ -25,7 +30,19 @@ const broadcast = (message: string) => {
 };
 
 socketServer.on("connection", (ws) => {
-  ws.on("message", (message: string) => {
-    broadcast(JSON.stringify(JSON.parse(message)));
+  ws.on("message", (actionString: string) => {
+    console.log("HENRY");
+    console.log(actionString);
+    console.log(typeof actionString);
+
+    const actionObject = JSON.parse(actionString);
+    store.dispatch(actionObject);
+
+    broadcast(JSON.stringify(actionObject));
   });
+
+  const state = store.getState();
+  ws.send(JSON.stringify(overwritePlayers(state.players.all)));
+  ws.send(JSON.stringify(overwriteLonewolf(state.lonewolf)));
+  ws.send(JSON.stringify(overwriteGm(state.gm)));
 });

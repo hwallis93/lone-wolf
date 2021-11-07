@@ -1,10 +1,10 @@
 import { ChangeEvent, KeyboardEvent, useState } from "react";
 import { cycleResponsibilities } from "../controller";
 import JSON5 from "json5";
-import { RootState, useAppDispatch } from "../../store/store";
+import { RootState, useAppDispatch } from "../store";
 import { overwritePlayers } from "../../store/player";
 import { overwriteGm } from "../../store/gm";
-import { overwriteLonewolf } from "../../store/lonewolf";
+import { overwriteLonewolf, reset } from "../../store/lonewolf";
 
 const ControlPanel: React.FC = () => {
   const [input, setInput] = useState("");
@@ -21,6 +21,10 @@ const ControlPanel: React.FC = () => {
     dispatch(overwriteLonewolf(asJson.lonewolf));
   };
 
+  const resetCharacterSheet = () => {
+    dispatch(reset());
+  };
+
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
       <h1>Control Panel</h1>
@@ -29,6 +33,7 @@ const ControlPanel: React.FC = () => {
         <textarea value={input} onChange={change}></textarea>
         <button onClick={overwriteRedux}>Overwrite Redux</button>
       </div>
+      <button onClick={resetCharacterSheet}>Reset Character Sheet</button>
     </div>
   );
 };

@@ -1,17 +1,16 @@
 Lone Wolf
 
 TODO:
-- Control panel:
-  - Reset character on death
+- Update clients on join
 - Editable character sheet
-- Consider character creation flow
 - Dice
 - Combat
+- Consider character creation flow
 - People disconnecting?
   - Then rejoining?
 
 TO FIX:
-- Only create one websocket client per client
+- String/objectess in server of message
 
 WIBNI
 - HTTPS access (needs WSS)

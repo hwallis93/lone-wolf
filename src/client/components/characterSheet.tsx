@@ -1,4 +1,4 @@
-import { useAppSelector } from "../../store/store";
+import { useAppSelector } from "../store";
 
 const CharacterSheet: React.FC = () => {
   const {

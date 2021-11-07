@@ -1,15 +1,8 @@
-import {
-  configureStore,
-  createSlice,
-  applyMiddleware,
-  PayloadAction,
-} from "@reduxjs/toolkit";
+import { configureStore } from "@reduxjs/toolkit";
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
-import { Player } from "../client/types";
 import * as wsClient from "../client/websocket-client";
-import { gm } from "./gm";
-import { loneWolf } from "./lonewolf";
-import { players } from "./player";
+import { players } from "../store/player";
+import reducer from "../store/reducer";
 
 const remoteMiddleware =
   () => (next: any) => (action: Record<string, unknown>) => {
@@ -31,11 +24,7 @@ const remoteMiddleware =
   };
 
 export const store = configureStore({
-  reducer: {
-    lonewolf: loneWolf.reducer,
-    players: players.reducer,
-    gm: gm.reducer,
-  },
+  reducer,
   middleware: [remoteMiddleware],
 });
 

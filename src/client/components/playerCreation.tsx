@@ -1,7 +1,7 @@
 import { ChangeEvent, KeyboardEvent, useState } from "react";
 import { setGmName } from "../../store/gm";
 import { addPlayer, setLocalPlayer } from "../../store/player";
-import { useAppDispatch } from "../../store/store";
+import { useAppDispatch } from "../store";
 import { secretGmCode } from "../constants";
 import { Responsibility } from "../types";
 

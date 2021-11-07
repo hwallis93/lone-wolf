@@ -1,4 +1,4 @@
-import { useAppSelector } from "../../store/store";
+import { useAppSelector } from "../store";
 import MainWindow from "./mainWindow";
 import PlayerCreation from "./playerCreation";
 

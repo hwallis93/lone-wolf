@@ -1,4 +1,4 @@
-import { useAppSelector } from "../../store/store";
+import { useAppSelector } from "../store";
 import { secretGmCode } from "../constants";
 import CharacterSheet from "./characterSheet";
 import ControlPanel from "./controlPanel";

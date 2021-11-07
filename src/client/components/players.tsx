@@ -1,4 +1,4 @@
-import { useAppSelector } from "../../store/store";
+import { useAppSelector } from "../store";
 import { Player } from "../types";
 
 const Players: React.FC = () => {

@@ -1,5 +1,5 @@
 import { overwritePlayers } from "../store/player";
-import { store } from "../store/store";
+import { store } from "./store";
 import { Player, Responsibility } from "./types";
 import cloneDeep from "lodash.clonedeep";
 

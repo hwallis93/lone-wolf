@@ -1,4 +1,4 @@
-import { store } from "../store/store";
+import { store } from "./store";
 
 const url = window.location.href.replace(/^https?:/, "ws:");
 const socket = new WebSocket(url);
