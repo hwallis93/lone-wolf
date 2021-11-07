@@ -1,14 +1,12 @@
 export enum Responsibility {
+  DICE = "Dice",
+  ENDURANCE_POINTS = "Endurance Points",
   GM = "GM",
   GOLD = "Gold",
-  ENDURANCE_POINTS = "Endurance Points",
   ITEMS = "Items",
   WEAPONS = "Weapons",
 }
-export interface Player {
-  name: string;
-  responsibilities: Responsibility[];
-}
+
 export enum Discipline {
   CAMOUFLAGE = "Camouflage",
   HUNTING = "Hunting",
@@ -20,4 +18,9 @@ export enum Discipline {
   MINDBLAST = "Mindblast",
   ANIMAL_KINSHIP = "Animal Kinship",
   MIND_OVER_MATTER = "Mind Over Matter",
+}
+
+export interface Player {
+  name: string;
+  responsibilities: Responsibility[];
 }

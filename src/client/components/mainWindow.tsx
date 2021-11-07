@@ -12,11 +12,11 @@ const MainWindow: React.FC = () => {
   const playerIsGM = player.responsibilities.includes(Responsibility.GM);
 
   return (
-    <>
+    <div style={{ display: "flex" }}>
       <CharacterSheet />
       <Players />
       {playerIsGM ? <ControlPanel /> : null}
-    </>
+    </div>
   );
 };
 

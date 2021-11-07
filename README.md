@@ -1,8 +1,13 @@
 Lone Wolf
 
 TODO:
-- Setup Redux
-- Setup redux sync between clients
+- Control panel:
+  - Dish out player responsibilities
+  - Set any Redux state
+  - (Re)start character creation
+- Editable character sheet
+- Character creation
+- Dice
 
 TO FIX:
 - Only create one websocket client per client
