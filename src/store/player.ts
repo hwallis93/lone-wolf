@@ -17,13 +17,14 @@ export const players = createSlice({
     addPlayer: (state, action: PayloadAction<Player>) => {
       state.all.push(action.payload);
     },
+    overwriteAllPlayers: (state, action: PayloadAction<Player[]>) => {
+      state.all = action.payload;
+    },
     setLocalPlayer: (state, action: PayloadAction<string>) => {
       state.local = action.payload;
     },
   },
 });
 
-export const { addPlayer, setLocalPlayer } = players.actions;
-export const selectLocalPlayer = (state: { players: PlayersState }) =>
-  state.players.all.find((player) => player.name === state.players.local) ||
-  null;
+export const { addPlayer, setLocalPlayer, overwriteAllPlayers } =
+  players.actions;

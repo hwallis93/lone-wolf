@@ -2,11 +2,11 @@ Lone Wolf
 
 TODO:
 - Control panel:
-  - Dish out player responsibilities
+  - Dish out player responsibilities <-- next
   - Set any Redux state
-  - (Re)start character creation
+  - Reset character on death
 - Editable character sheet
-- Character creation
+- Consider character creation flow
 - Dice
 - Combat
 
@@ -15,3 +15,8 @@ TO FIX:
 
 WIBNI
 - HTTPS access (needs WSS)
+- Pretty
+  - Styling
+  - Favicon
+  - Images
+- Background sounds

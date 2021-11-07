@@ -1,6 +1,8 @@
 import { ChangeEvent, KeyboardEvent, useState } from "react";
+import { setGmName } from "../../store/gm";
 import { addPlayer, setLocalPlayer } from "../../store/player";
 import { useAppDispatch } from "../../store/store";
+import { secretGmCode } from "../constants";
 import { Responsibility } from "../types";
 
 const PlayerCreation: React.FC = () => {
@@ -11,15 +13,11 @@ const PlayerCreation: React.FC = () => {
     setInput(event.target.value);
   };
   const submit = () => {
-    const isSecretGMCode = input === "__henrythegm";
+    dispatch(setLocalPlayer(input));
 
-    if (isSecretGMCode) {
-      dispatch(setLocalPlayer("Henry"));
-      dispatch(
-        addPlayer({ name: "Henry", responsibilities: [Responsibility.GM] })
-      );
+    if (input === secretGmCode) {
+      dispatch(setGmName("Henry"));
     } else {
-      dispatch(setLocalPlayer(input));
       dispatch(addPlayer({ name: input, responsibilities: [] }));
     }
   };

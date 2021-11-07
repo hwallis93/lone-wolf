@@ -1,7 +1,6 @@
 export enum Responsibility {
   DICE = "Dice",
   ENDURANCE_POINTS = "Endurance Points",
-  GM = "GM",
   GOLD = "Gold",
   ITEMS = "Items",
   WEAPONS = "Weapons",
@@ -30,13 +29,6 @@ export enum Weapon {
   AXE = "Axe",
   QUARTERSTAFF = "Quarterstaff",
   BROADSWORD = "Broadsword",
-}
-
-export enum CreationState {
-  WAIT_FOR_PLAYERS = "Wait For Players",
-  COMBAT_SKILL = "Combat Skill",
-  ENDURANCE_POINTS = "Endurance Points",
-  DISCIPLINES = "Disciplines",
 }
 
 export interface Player {

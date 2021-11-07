@@ -31,6 +31,3 @@ export const loneWolf = createSlice({
 });
 
 export const {} = loneWolf.actions;
-// export const selectLocalPlayer = (state: { players: PlayersState }) =>
-//   state.players.players.find((player) => player.name === state.players.local) ||
-//   null;
