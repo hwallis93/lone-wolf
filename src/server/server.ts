@@ -30,12 +30,8 @@ const broadcast = (message: string) => {
 };
 
 socketServer.on("connection", (ws) => {
-  ws.on("message", (actionString: string) => {
-    console.log("HENRY");
-    console.log(actionString);
-    console.log(typeof actionString);
-
-    const actionObject = JSON.parse(actionString);
+  ws.on("message", (actionBuffer: string) => {
+    const actionObject = JSON.parse(actionBuffer);
     store.dispatch(actionObject);
 
     broadcast(JSON.stringify(actionObject));

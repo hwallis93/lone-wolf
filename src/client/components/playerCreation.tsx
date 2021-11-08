@@ -3,7 +3,7 @@ import { setGmName } from "../../store/gm";
 import { addPlayer, setLocalPlayer } from "../../store/player";
 import { useAppDispatch } from "../store";
 import { secretGmCode } from "../constants";
-import { Responsibility } from "../types";
+import { Control } from "../types";
 
 const PlayerCreation: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -18,7 +18,7 @@ const PlayerCreation: React.FC = () => {
     if (input === secretGmCode) {
       dispatch(setGmName("Henry"));
     } else {
-      dispatch(addPlayer({ name: input, responsibilities: [] }));
+      dispatch(addPlayer({ name: input, controls: [] }));
     }
   };
   const handleKeyPress = (event: KeyboardEvent<HTMLInputElement>) => {

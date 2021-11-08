@@ -8,9 +8,7 @@ const Players: React.FC = () => {
   const playerDetails = (player: Player): string => {
     const name = player.name;
     const responsibilities =
-      player.responsibilities.length > 0
-        ? " (" + player.responsibilities + ")"
-        : "";
+      player.controls.length > 0 ? " (" + player.controls + ")" : "";
     const you = player.name === local ? " (You)" : "";
 
     return name + you + responsibilities;

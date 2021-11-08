@@ -1,28 +1,35 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { Discipline, Weapon } from "../client/types";
-
+import { ConditionalKeys } from "type-fest";
 interface LoneWolfState {
-  disciplines: Discipline[];
+  gold: number;
   endurancePoints: number;
   endurancePointsMax: number;
-  gold: number;
-  items: string[];
-  weapons: Weapon[];
+  disciplines: string[];
+  backpack: string[];
+  weapons: string[];
 }
 const initialState: LoneWolfState = {
   gold: 12,
-  endurancePointsMax: 23,
   endurancePoints: 23,
-  items: ["Meal", "Meal", "Friggin potion", "Something else"],
-  disciplines: [
-    Discipline.CAMOUFLAGE,
-    Discipline.HUNTING,
-    Discipline.MINDSHIELD,
-    Discipline.WEAPONSKILL,
-    Discipline.SIXTH_SENSE,
-  ],
-  weapons: [Weapon.AXE, Weapon.SPEAR],
+  endurancePointsMax: 23,
+  disciplines: ["Camouflage", "Hunting"],
+  backpack: ["Meal", "Meal", "Friggin potion", "Something else"],
+  weapons: ["chopper", "stabber"],
 };
+
+const adder =
+  (field: ConditionalKeys<LoneWolfState, string[]>) =>
+  (state: LoneWolfState, action: PayloadAction<string>) => {
+    state[field].push(action.payload);
+  };
+const remover =
+  (field: ConditionalKeys<LoneWolfState, string[]>) =>
+  (state: LoneWolfState, action: PayloadAction<string>) => {
+    const itemIndex = state[field].findIndex((item) => item === action.payload);
+    if (itemIndex === -1) return;
+
+    state[field].splice(itemIndex, 1);
+  };
 
 export const loneWolf = createSlice({
   name: "loneWolf",
@@ -32,7 +39,35 @@ export const loneWolf = createSlice({
       return action.payload;
     },
     reset: () => initialState,
+    addGold: (state, action: PayloadAction<number>) => {
+      state.gold += action.payload;
+      if (state.gold > 50) state.gold = 50;
+      if (state.gold < 0) state.gold = 0;
+    },
+    addEndurancePoints: (state, action: PayloadAction<number>) => {
+      state.endurancePoints += action.payload;
+      if (state.endurancePoints > state.endurancePointsMax)
+        state.endurancePoints = state.endurancePointsMax;
+      if (state.endurancePoints < 0) state.endurancePoints = 0;
+    },
+    addToBackpack: adder("backpack"),
+    removeFromBackpack: remover("backpack"),
+    addWeapon: adder("weapons"),
+    removeWeapon: remover("weapons"),
+    addDiscipline: adder("disciplines"),
+    removeDiscipline: remover("disciplines"),
   },
 });
 
-export const { overwriteLonewolf, reset } = loneWolf.actions;
+export const {
+  overwriteLonewolf,
+  reset,
+  addGold,
+  addEndurancePoints,
+  addToBackpack,
+  removeFromBackpack,
+  addWeapon,
+  removeWeapon,
+  addDiscipline,
+  removeDiscipline,
+} = loneWolf.actions;

@@ -5,10 +5,9 @@ import ControlPanel from "./controlPanel";
 import Players from "./players";
 
 const MainWindow: React.FC = () => {
-  const localPlayer = useAppSelector((state) => state.players.local);
-  const gmName = useAppSelector((state) => state.gm.name);
-
-  const playerIsGM = localPlayer === secretGmCode;
+  const playerIsGM = useAppSelector(
+    (state) => state.players.local === secretGmCode
+  );
 
   return (
     <div style={{ display: "flex", gap: "50px" }}>
