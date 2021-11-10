@@ -1,13 +1,15 @@
 # Lone Wolf
 
 REQUIRED FEATURES:
-- Dice
 - Combat
+  - Active combat
+  - only people with the controls can start combat
+- Special items list
 - Consider character creation flow
+  - Picking disciplines
 - People disconnecting?
   - Then rejoining?
 - Multiple sessions
-- Special items list
 
 WIBNI FEATURES:
 - HTTPS access (needs WSS)

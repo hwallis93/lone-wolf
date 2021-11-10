@@ -1,5 +1,6 @@
 import { useAppSelector } from "../store";
 import { Player } from "../types";
+import Combat from "./combat";
 import Dice from "./dice";
 
 const Players: React.FC = () => {
@@ -30,6 +31,7 @@ const Players: React.FC = () => {
         ))}
       </ul>
       <Dice />
+      <Combat />
     </div>
   );
 };
