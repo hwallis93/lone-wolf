@@ -14,16 +14,19 @@ const Players: React.FC = () => {
     return name + you + responsibilities;
   };
 
-  const gm = gmName !== null ? <li>{`${gmName} (GM)`} </li> : null;
+  const allPlayerDetails = all.map(playerDetails);
+  if (gmName !== null) {
+    allPlayerDetails.push(`${gmName} (GM)`);
+  }
+  allPlayerDetails.sort();
 
   return (
     <div>
       <h1>Players</h1>
       <ul>
-        {all.map((player) => (
-          <li>{playerDetails(player)}</li>
+        {allPlayerDetails.map((player) => (
+          <li>{player}</li>
         ))}
-        {gm}
       </ul>
     </div>
   );

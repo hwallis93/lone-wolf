@@ -1,7 +1,6 @@
 # Lone Wolf
 
 REQUIRED FEATURES:
-- Editable character sheet <-- Partway through this
 - Dice
 - Combat
 - Consider character creation flow
@@ -22,6 +21,4 @@ BUGS:
 
 REFACTORS:
 - Change endurancePoints to EP everywhere
-- Commonise backpack/weapons/special components
 - How GM is done. Them get rid of `?`s in characterSheet
-- Commonise lonewolf reducers
