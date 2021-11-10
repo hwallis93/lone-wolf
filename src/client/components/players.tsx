@@ -1,5 +1,6 @@
 import { useAppSelector } from "../store";
 import { Player } from "../types";
+import Dice from "./dice";
 
 const Players: React.FC = () => {
   const { local, all } = useAppSelector((state) => state.players);
@@ -28,6 +29,7 @@ const Players: React.FC = () => {
           <li>{player}</li>
         ))}
       </ul>
+      <Dice />
     </div>
   );
 };

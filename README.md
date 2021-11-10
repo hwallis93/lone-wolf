@@ -22,3 +22,5 @@ BUGS:
 REFACTORS:
 - Change endurancePoints to EP everywhere
 - How GM is done. Them get rid of `?`s in characterSheet
+- Commonise selecting player responsibilities
+- Commonise and do better styling?
