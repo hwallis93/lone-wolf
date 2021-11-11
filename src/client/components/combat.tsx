@@ -20,20 +20,27 @@ const CombatCreator: React.FC = () => {
 
   const [errors, setErrors] = useState<string[]>([]);
 
-  const enemyNameChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setEnemyNameField(event.target.value);
-  };
-  const enemyEPMaxChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setEnemyEPMaxField(event.target.value);
-  };
-
   const createCombat = () => {
     const errs: string[] = [];
     if (enemyNameField.trim() === "") errs.push("Enemy name can't be blank");
 
     const enemyEPAsNumber = parseInt(enemyEPMaxField);
-    if (isNaN(enemyEPAsNumber)) errs.push("Enemy EP must be a number");
-    if (enemyEPAsNumber <= 0) errs.push("Enemy EP must be greater than 0");
+    if (isNaN(enemyEPAsNumber))
+      errs.push("Enemy Endurance Points must be a number");
+    if (enemyEPAsNumber <= 0)
+      errs.push("Enemy Endurance Points must be greater than 0");
+
+    const enemyCPAsNumber = parseInt(enemyCPField);
+    if (isNaN(enemyCPAsNumber))
+      errs.push("Enemy Combat Points must be a number");
+    if (enemyCPAsNumber <= 0)
+      errs.push("Enemy Combat Points must be greater than 0");
+
+    const loneWolfCPAsNumber = parseInt(loneWolfCPField);
+    if (isNaN(loneWolfCPAsNumber))
+      errs.push("Lone Wolf Combat Points must be a number");
+    if (loneWolfCPAsNumber <= 0)
+      errs.push("Lone Wolf Combat Points must be greater than 0");
 
     if (errs.length) {
       setErrors(errs);
@@ -43,16 +50,30 @@ const CombatCreator: React.FC = () => {
     }
   };
   return (
-    <>
-      <form>
-        <h2>Combat Creator</h2>
-        Enemy name:
-        <input value={enemyNameField} onChange={enemyNameChange} />
-        Enemy EP:
-        <input value={enemyEPMaxField} onChange={enemyEPMaxChange} />
-      </form>
+    <span style={{ display: "flex", flexDirection: "column" }}>
+      <h2>Combat Creator</h2>
+      Enemy name:
+      <input
+        value={enemyNameField}
+        onChange={(event) => setEnemyNameField(event.target.value)}
+      />
+      Enemy Endurance Points:
+      <input
+        value={enemyEPMaxField}
+        onChange={(event) => setEnemyEPMaxField(event.target.value)}
+      />
+      Enemy Combat Points:
+      <input
+        value={enemyCPField}
+        onChange={(event) => setEnemyCPField(event.target.value)}
+      />
+      Lone Wolf Combat Points:
+      <input
+        value={loneWolfCPField}
+        onChange={(event) => setLoneWolfCPField(event.target.value)}
+      />
       <button onClick={createCombat}>Start combat</button>
-      {errors.length > 0 ? <div>{errors}</div> : null}
-    </>
+      {errors.length > 0 ? errors.map((error) => <div>{error}</div>) : null}
+    </span>
   );
 };
