@@ -1,4 +1,5 @@
 export enum Control {
+  COMBAT = "Combat",
   DICE = "Dice",
   ENDURANCE_POINTS = "Endurance Points",
   GOLD = "Gold",

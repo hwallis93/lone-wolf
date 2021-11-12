@@ -1,45 +1,26 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { ConditionalKeys } from "type-fest";
 
 interface Combat {
   enemyName: string;
-  enemyEPMax: number;
-  enemyEP: number;
   enemyCP: number;
   loneWolfCP: number;
-  round: number;
+  enemyEP: number;
 }
 type CombatState = Combat | null;
 const initialState: CombatState | null = null;
-
-const numberSetter =
-  (field: ConditionalKeys<Combat, number>) =>
-  (state: CombatState, action: PayloadAction<number>) => {
-    if (state === null) return;
-    state[field] = action.payload;
-  };
 
 export const combat = createSlice({
   name: "combat",
   initialState: initialState as CombatState,
   reducers: {
-    setEnemyName: (state, action: PayloadAction<string>) => {
-      if (state === null) return;
-      state.enemyName = action.payload;
+    setCombat: (_state, action: PayloadAction<Combat | null>) => {
+      return action.payload;
     },
-    setEnemyEPMax: numberSetter("enemyEPMax"),
-    setEnemyEP: numberSetter("enemyEP"),
-    setEnemyCP: numberSetter("enemyCP"),
-    setLoneWolfCP: numberSetter("loneWolfCP"),
-    setRound: numberSetter("round"),
+    setEnemyEP: (state, action: PayloadAction<Combat["enemyEP"]>) => {
+      if (state === null) return;
+      state.enemyEP = action.payload;
+    },
   },
 });
 
-export const {
-  setEnemyName,
-  setEnemyEPMax,
-  setEnemyEP,
-  setEnemyCP,
-  setLoneWolfCP,
-  setRound,
-} = combat.actions;
+export const { setEnemyEP, setCombat } = combat.actions;

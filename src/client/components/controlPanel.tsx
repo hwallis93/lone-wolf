@@ -5,6 +5,7 @@ import { RootState, useAppDispatch } from "../store";
 import { overwritePlayers } from "../../store/player";
 import { overwriteGm } from "../../store/gm";
 import { overwriteLonewolf, reset } from "../../store/lonewolf";
+import { setCombat } from "../../store/combat";
 
 const ControlPanel: React.FC = () => {
   const [input, setInput] = useState("");
@@ -19,6 +20,7 @@ const ControlPanel: React.FC = () => {
     dispatch(overwritePlayers(asJson.players.all));
     dispatch(overwriteGm(asJson.gm));
     dispatch(overwriteLonewolf(asJson.lonewolf));
+    dispatch(setCombat(asJson.combat));
   };
 
   const resetCharacterSheet = () => {
