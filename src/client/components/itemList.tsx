@@ -33,9 +33,30 @@ const ItemList: React.FC<Props> = ({
     controls && (maxLength === undefined || items.length < maxLength);
   const maxInfo = maxLength ? ` (max. ${maxLength})` : "";
 
+  const header = title + maxInfo;
+  const itemAdder = showAddItem ? (
+    <li>
+      <input
+        value={input}
+        onChange={change}
+        onKeyPress={handleKeyPress}
+      ></input>
+    </li>
+  ) : null;
+
+  if (items.length === 0) {
+    return (
+      <>
+        {header}
+        <em style={{ padding: "5px 0px 10px 10px" }}>{"<Empty>"}</em>
+        {itemAdder}
+      </>
+    );
+  }
+
   return (
     <>
-      {`${title}` + maxInfo}
+      {header}
       <ul>
         {items.map((item) => (
           <li>
@@ -50,15 +71,7 @@ const ItemList: React.FC<Props> = ({
             ) : null}
           </li>
         ))}
-        {showAddItem ? (
-          <li>
-            <input
-              value={input}
-              onChange={change}
-              onKeyPress={handleKeyPress}
-            ></input>
-          </li>
-        ) : null}
+        {itemAdder}
       </ul>
     </>
   );

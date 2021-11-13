@@ -6,12 +6,14 @@ interface PlayersState {
   all: Player[];
   diceRolling: boolean;
   diceValue: number;
+  showDisciplines: boolean;
 }
 const initialState: PlayersState = {
   local: null,
   all: [],
   diceRolling: false,
   diceValue: 0,
+  showDisciplines: true,
 };
 
 export const players = createSlice({
@@ -20,6 +22,14 @@ export const players = createSlice({
   reducers: {
     addPlayer: (state, action: PayloadAction<Player>) => {
       state.all.push(action.payload);
+    },
+    removePlayer: (state, action: PayloadAction<string>) => {
+      const index = state.all.findIndex(
+        (player) => player.name === action.payload
+      );
+      if (index === -1) return;
+
+      state.all.splice(index, 1);
     },
     overwritePlayers: (state, action: PayloadAction<Player[]>) => {
       state.all = action.payload;
@@ -36,13 +46,18 @@ export const players = createSlice({
 
       state.diceValue = number;
     },
+    setShowDisciplines: (state, action: PayloadAction<boolean>) => {
+      state.showDisciplines = action.payload;
+    },
   },
 });
 
 export const {
   addPlayer,
+  removePlayer,
   setLocalPlayer,
   overwritePlayers,
   setDiceRolling,
   setDiceValue,
+  setShowDisciplines,
 } = players.actions;

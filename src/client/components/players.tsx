@@ -2,6 +2,7 @@ import { useAppSelector } from "../store";
 import { Player } from "../types";
 import Combat from "./combat";
 import Dice from "./dice";
+import Disciplines from "./disciplines";
 
 const Players: React.FC = () => {
   const { local, all } = useAppSelector((state) => state.players);
@@ -32,6 +33,7 @@ const Players: React.FC = () => {
       </ul>
       <Dice />
       <Combat />
+      <Disciplines />
     </div>
   );
 };

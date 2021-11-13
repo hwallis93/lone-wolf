@@ -5,7 +5,7 @@ import path from "path";
 import { WebSocketServer } from "ws";
 import { overwriteGm } from "../store/gm";
 import { overwriteLonewolf } from "../store/lonewolf";
-import { overwritePlayers } from "../store/player";
+import { overwritePlayers, players, removePlayer } from "../store/player";
 
 import { store } from "./store";
 
@@ -30,11 +30,23 @@ const broadcast = (message: string) => {
 };
 
 socketServer.on("connection", (ws) => {
+  let localPlayer: string;
+
   ws.on("message", (actionBuffer: string) => {
     const actionObject = JSON.parse(actionBuffer);
     store.dispatch(actionObject);
+    console.log(actionObject);
+    if (actionObject.type === players.name + "/setLocalPlayer") {
+      localPlayer = actionObject.payload;
+      ws.send(JSON.stringify(actionObject));
+      return;
+    }
+    console.log("Local player:" + localPlayer);
 
     broadcast(JSON.stringify(actionObject));
+  }).on("close", () => {
+    store.dispatch(removePlayer(localPlayer));
+    broadcast(JSON.stringify(removePlayer(localPlayer)));
   });
 
   const state = store.getState();

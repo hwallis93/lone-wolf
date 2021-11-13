@@ -2,10 +2,12 @@ import {
   addDiscipline,
   addEndurancePoints,
   addGold,
+  addSpecialItem,
   addToBackpack,
   addWeapon,
   removeDiscipline,
   removeFromBackpack,
+  removeSpecialItem,
   removeWeapon,
 } from "../../store/lonewolf";
 import { secretGmCode } from "../constants";
@@ -22,6 +24,7 @@ const CharacterSheet: React.FC = () => {
     backpack,
     disciplines,
     weapons,
+    specialItems,
   } = useAppSelector((state) => state.lonewolf);
   const isGM = useAppSelector((state) => state.players.local === secretGmCode);
 
@@ -64,6 +67,13 @@ const CharacterSheet: React.FC = () => {
           items={disciplines}
           addCallback={(item) => dispatch(addDiscipline(item))}
           removeCallback={(item) => dispatch(removeDiscipline(item))}
+        />
+        <ItemList
+          title={"Special Items"}
+          controls={isGM}
+          items={specialItems}
+          addCallback={(item) => dispatch(addSpecialItem(item))}
+          removeCallback={(item) => dispatch(removeSpecialItem(item))}
         />
         <ItemList
           title={"Backpack"}

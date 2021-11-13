@@ -11,16 +11,7 @@ const remoteMiddleware =
       next(action.payload);
       return;
     }
-    switch (action.type) {
-      // If the action is setting the player's name then we don't want to broadcast as it's
-      // the only thing that's different for each player. We do however broadcast that a new name
-      // has been added
-      case players.name + "/setLocalPlayer":
-        next(action);
-        break;
-      default:
-        wsClient.sendObject(action);
-    }
+    wsClient.sendObject(action);
   };
 
 export const store = configureStore({

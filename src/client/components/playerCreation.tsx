@@ -3,7 +3,6 @@ import { setGmName } from "../../store/gm";
 import { addPlayer, setLocalPlayer } from "../../store/player";
 import { useAppDispatch } from "../store";
 import { secretGmCode } from "../constants";
-import { Control } from "../types";
 
 const PlayerCreation: React.FC = () => {
   const dispatch = useAppDispatch();

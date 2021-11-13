@@ -7,6 +7,7 @@ interface LoneWolfState {
   disciplines: string[];
   backpack: string[];
   weapons: string[];
+  specialItems: string[];
 }
 const initialState: LoneWolfState = {
   gold: 12,
@@ -15,6 +16,7 @@ const initialState: LoneWolfState = {
   disciplines: ["Camouflage", "Hunting"],
   backpack: ["Meal", "Meal", "Friggin potion", "Something else"],
   weapons: ["chopper", "stabber"],
+  specialItems: ["Map"],
 };
 
 const adder =
@@ -56,6 +58,8 @@ export const loneWolf = createSlice({
     removeWeapon: remover("weapons"),
     addDiscipline: adder("disciplines"),
     removeDiscipline: remover("disciplines"),
+    addSpecialItem: adder("specialItems"),
+    removeSpecialItem: remover("specialItems"),
   },
 });
 
@@ -70,4 +74,6 @@ export const {
   removeWeapon,
   addDiscipline,
   removeDiscipline,
+  addSpecialItem,
+  removeSpecialItem,
 } = loneWolf.actions;

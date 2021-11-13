@@ -21,7 +21,7 @@ const Dice: React.FC = () => {
     dispatch(setDiceRolling(true));
     const result = Math.floor(Math.random() * 10);
     dispatch(setDiceValue(result));
-    setTimeout(() => dispatch(setDiceRolling(false)), 2000);
+    setTimeout(() => dispatch(setDiceRolling(false)), 1500);
   };
 
   return (
