@@ -1,15 +1,17 @@
 import { ChangeEvent, KeyboardEvent, useState } from "react";
 import { cycleResponsibilities } from "../controller";
 import JSON5 from "json5";
-import { RootState, useAppDispatch } from "../store";
+import { RootState, useAppDispatch, useAppSelector } from "../store";
 import { overwritePlayers } from "../../store/player";
 import { overwriteGm } from "../../store/gm";
 import { overwriteLonewolf, reset } from "../../store/lonewolf";
 import { setCombat } from "../../store/combat";
+import DownloadLink from "react-download-link";
 
 const ControlPanel: React.FC = () => {
   const [input, setInput] = useState("");
   const dispatch = useAppDispatch();
+  const allState = useAppSelector((state) => state);
 
   const change = (event: ChangeEvent<HTMLTextAreaElement>) => {
     setInput(event.target.value);
@@ -36,6 +38,11 @@ const ControlPanel: React.FC = () => {
         <button onClick={overwriteRedux}>Overwrite Redux</button>
       </div>
       <button onClick={resetCharacterSheet}>Reset Character Sheet</button>
+      <DownloadLink
+        label="Save"
+        filename="loneWolf.json"
+        exportFile={() => JSON.stringify(allState)}
+      />
     </div>
   );
 };
