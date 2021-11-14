@@ -28,7 +28,9 @@ const CombatTracker: React.FC = () => {
   const decreaseLoneWolfEP = () => dispatch(addEndurancePoints(-1));
   const increaseLoneWolfEP = () => dispatch(addEndurancePoints(+1));
 
-  const CPDiff = combat.loneWolfCP - combat.enemyCP;
+  let CPDiff = combat.loneWolfCP - combat.enemyCP;
+  if (CPDiff < -11) CPDiff = -11;
+  if (CPDiff > 11) CPDiff = 11;
 
   return (
     <>
@@ -82,15 +84,75 @@ const CombatTracker: React.FC = () => {
 
 const DamageTable: React.FC<{ CPDiff: number }> = ({ CPDiff }) => {
   const calcDamageTable = () => {
+    let loneWolfDamage: (number | "💀")[] = [];
+    let enemyDamage: (number | "💀")[] = [];
     switch (CPDiff) {
+      case -11:
+        loneWolfDamage = [0, "💀", "💀", 8, 8, 7, 6, 5, 4, 3];
+        enemyDamage = [6, 0, 0, 0, 0, 1, 2, 3, 4, 5];
+        break;
+      case -10:
+      case -9:
+        loneWolfDamage = [0, "💀", 8, 7, 7, 6, 6, 5, 4, 3];
+        enemyDamage = [7, 0, 0, 0, 1, 2, 3, 4, 5, 6];
+        break;
+      case -8:
+      case -7:
+        loneWolfDamage = [0, 8, 7, 6, 6, 5, 5, 4, 3, 2];
+        enemyDamage = [8, 0, 0, 1, 2, 3, 4, 5, 6, 7];
+        break;
+      case -6:
+      case -5:
+        loneWolfDamage = [0, 6, 6, 5, 5, 4, 4, 3, 2, 0];
+        enemyDamage = [9, 0, 1, 2, 3, 4, 5, 6, 7, 8];
+        break;
+      case -4:
+      case -3:
+        loneWolfDamage = [0, 6, 5, 5, 4, 4, 3, 2, 1, 0];
+        enemyDamage = [10, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+        break;
+      case -2:
+      case -1:
+        loneWolfDamage = [0, 5, 5, 4, 4, 3, 2, 2, 1, 0];
+        enemyDamage = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+        break;
+      case 0:
+        loneWolfDamage = [0, 5, 4, 4, 3, 2, 2, 1, 0, 0];
+        enemyDamage = [12, 3, 4, 5, 6, 7, 8, 9, 10, 11];
+        break;
+      case 1:
       case 2:
-        const loneWolfDamage = [0, 7, 6, 5, 4, 4, 3, 2, 1, 0];
-        const enemyDamage = [12, 3, 4, 5, 6, 7, 8, 9, 10, 11];
-        return zip(loneWolfDamage, enemyDamage);
+        loneWolfDamage = [0, 5, 4, 3, 3, 2, 2, 1, 0, 0];
+        enemyDamage = [14, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+        break;
+      case 3:
+      case 4:
+        loneWolfDamage = [0, 4, 3, 3, 2, 2, 2, 1, 0, 0];
+        enemyDamage = [16, 5, 6, 7, 8, 9, 10, 11, 12, 14];
+        break;
+      case 5:
+      case 6:
+        loneWolfDamage = [0, 4, 3, 3, 2, 2, 1, 0, 0, 0];
+        enemyDamage = [18, 6, 7, 8, 9, 10, 11, 12, 14, 16];
+        break;
+      case 7:
+      case 8:
+        loneWolfDamage = [0, 4, 3, 2, 2, 2, 1, 0, 0, 0];
+        enemyDamage = ["💀", 7, 8, 9, 10, 11, 12, 14, 16, 18];
+        break;
+      case 9:
+      case 10:
+        loneWolfDamage = [0, 3, 3, 2, 2, 2, 1, 0, 0, 0];
+        enemyDamage = ["💀", 8, 9, 10, 11, 12, 14, 16, 18, "💀"];
+        break;
+      case 11:
+        loneWolfDamage = [0, 3, 2, 2, 2, 1, 1, 0, 0, 0];
+        enemyDamage = ["💀", 9, 10, 11, 12, 14, 16, 18, "💀", "💀"];
+        break;
     }
+    return zip(loneWolfDamage, enemyDamage);
   };
   const damageTable = calcDamageTable();
-  if (damageTable === undefined) return null;
 
   const cell: React.CSSProperties = {
     borderTop: "1px solid black",
@@ -166,15 +228,15 @@ const CombatCreator: React.FC = () => {
 
     const enemyCPAsNumber = parseInt(enemyCPField);
     if (isNaN(enemyCPAsNumber))
-      errs.push("Enemy Combat Points must be a number");
+      errs.push("Enemy Combat Skill must be a number");
     if (enemyCPAsNumber <= 0)
-      errs.push("Enemy Combat Points must be greater than 0");
+      errs.push("Enemy Combat Skill must be greater than 0");
 
     const loneWolfCPAsNumber = parseInt(loneWolfCPField);
     if (isNaN(loneWolfCPAsNumber))
-      errs.push("Lone Wolf Combat Points must be a number");
+      errs.push("Lone Wolf Combat Skill must be a number");
     if (loneWolfCPAsNumber <= 0)
-      errs.push("Lone Wolf Combat Points must be greater than 0");
+      errs.push("Lone Wolf Combat Skill must be greater than 0");
 
     if (errs.length) {
       setErrors(errs);
@@ -203,12 +265,12 @@ const CombatCreator: React.FC = () => {
         value={enemyEPField}
         onChange={(event) => setEnemyEPField(event.target.value)}
       />
-      Enemy Combat Points:
+      Enemy Combat Skill:
       <input
         value={enemyCPField}
         onChange={(event) => setEnemyCPField(event.target.value)}
       />
-      Lone Wolf Combat Points:
+      Lone Wolf Combat Skill:
       <input
         value={loneWolfCPField}
         onChange={(event) => setLoneWolfCPField(event.target.value)}

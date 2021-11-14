@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Player } from "../client/types";
+import { localise } from "./utils";
 
 interface PlayersState {
   local: Player["name"] | null;
@@ -59,5 +60,5 @@ export const {
   overwritePlayers,
   setDiceRolling,
   setDiceValue,
-  setShowDisciplines,
 } = players.actions;
+export const setShowDisciplines = localise(players.actions.setShowDisciplines);

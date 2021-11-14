@@ -11,3 +11,9 @@ export interface Player {
   name: string;
   controls: Control[];
 }
+
+export interface Discipline {
+  name: string;
+  tldr: string;
+  description: string;
+}

@@ -1,13 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 import * as wsClient from "../client/websocket-client";
-import { players } from "../store/player";
 import reducer from "../store/reducer";
 
 const remoteMiddleware =
   () => (next: any) => (action: Record<string, unknown>) => {
-    // If the action comes from the server then its payload is another action. Send that onwards
-    if (action.type === "fromServer") {
+    // If the action is local (i.e. shouldn't be sent to the server) then its payload is another
+    // action. Send that onwards
+    if (action.type === "local") {
       next(action.payload);
       return;
     }

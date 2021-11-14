@@ -4,7 +4,7 @@ const url = window.location.href.replace(/^https?:/, "ws:");
 const socket = new WebSocket(url);
 
 socket.onmessage = (message: MessageEvent<string>) => {
-  store.dispatch({ type: "fromServer", payload: JSON.parse(message.data) });
+  store.dispatch({ type: "local", payload: JSON.parse(message.data) });
 };
 
 const queue: string[] = [];
