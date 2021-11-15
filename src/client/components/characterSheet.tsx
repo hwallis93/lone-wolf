@@ -40,11 +40,13 @@ const CharacterSheet: React.FC = () => {
   const weaponsControls = player?.controls.includes(Control.WEAPONS) || isGM;
 
   return (
-    <div>
+    <div style={{ flex: 1 }}>
       <h1>Character Sheet</h1>
       <div style={{ display: "flex", flexDirection: "column" }}>
         <div>
-          <span>{`Endurance Points (max. ${endurancePointsMax}): ${endurancePoints}`}</span>
+          <span
+            style={{ paddingRight: "10px" }}
+          >{`Endurance Points (max. ${endurancePointsMax}): ${endurancePoints}`}</span>
           {epControls ? (
             <button onClick={() => dispatch(addEndurancePoints(1))}>+</button>
           ) : null}
@@ -53,7 +55,9 @@ const CharacterSheet: React.FC = () => {
           ) : null}
         </div>
         <div>
-          <span>{`Gold (max. 50): ${gold}`}</span>
+          <span
+            style={{ paddingRight: "10px" }}
+          >{`Gold (max. 50): ${gold}`}</span>
           {goldControls ? (
             <button onClick={() => dispatch(addGold(1))}>+</button>
           ) : null}
@@ -70,7 +74,7 @@ const CharacterSheet: React.FC = () => {
         />
         <ItemList
           title={"Special Items"}
-          controls={isGM}
+          controls={backpackControls}
           items={specialItems}
           addCallback={(item) => dispatch(addSpecialItem(item))}
           removeCallback={(item) => dispatch(removeSpecialItem(item))}

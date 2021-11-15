@@ -5,7 +5,7 @@ import path from "path";
 import { WebSocketServer } from "ws";
 import { overwriteGm } from "../store/gm";
 import { overwriteLonewolf } from "../store/lonewolf";
-import { overwritePlayers, players, removePlayer } from "../store/player";
+import { players, removePlayer, overwritePlayers } from "../store/player";
 
 import { store } from "./store";
 
@@ -50,7 +50,7 @@ socketServer.on("connection", (ws) => {
   });
 
   const state = store.getState();
-  ws.send(JSON.stringify(overwritePlayers(state.players.all)));
+  ws.send(JSON.stringify(overwritePlayers(state.players)));
   ws.send(JSON.stringify(overwriteLonewolf(state.lonewolf)));
   ws.send(JSON.stringify(overwriteGm(state.gm)));
 });

@@ -31,7 +31,7 @@ export const disciplines = {
     name: "Healing",
     tldr: "Heal 1 EP per non-combat book section",
     description:
-      "This discipline can be used to restore ENDURANCE points lost in combat. If you possess this skill you may restore 1 ENDURANCE POINT to your total for every numbered section of the book you pass through in which you are not involved in combat. (This is only to be used after your ENDURANCE points have fallen below their original level, it can't rise above the original level).",
+      "This discipline can be used to restore ENDURANCE points lost in combat. If you possess this skill you may restore 1 ENDURANCE point to your total for every numbered section of the book you pass through in which you are not involved in combat. (This is only to be used after your ENDURANCE points have fallen below their original level, it can't rise above the original level).",
   },
   weaponskill: {
     name: "Weaponskill",

@@ -1,16 +1,11 @@
 # Lone Wolf
 
-REQUIRED FEATURES:
-- Done.
-
-BUGS:
-- Done.
-
-WIBNI FEATURES:
-- UI less jumpy when things change size or dis/appear
+TODO:
+- Bigger character sheet entries
+- Don't let scrollbar appearing jump the page
+- Don't let character sheet content growth grow the section
 - Favicon
 - Background sounds
-- Nicer layout
 - Images
 - HTTPS access (needs WSS)
 

@@ -14,7 +14,7 @@ const initialState: PlayersState = {
   all: [],
   diceRolling: false,
   diceValue: 0,
-  showDisciplines: true,
+  showDisciplines: false,
 };
 
 export const players = createSlice({
@@ -32,8 +32,12 @@ export const players = createSlice({
 
       state.all.splice(index, 1);
     },
-    overwritePlayers: (state, action: PayloadAction<Player[]>) => {
+    setAllPlayers: (state, action: PayloadAction<Player[]>) => {
       state.all = action.payload;
+    },
+    overwritePlayers: (state, action: PayloadAction<PlayersState>) => {
+      action.payload.local = state.local;
+      return action.payload;
     },
     setLocalPlayer: (state, action: PayloadAction<string>) => {
       state.local = action.payload;
@@ -58,6 +62,7 @@ export const {
   removePlayer,
   setLocalPlayer,
   overwritePlayers,
+  setAllPlayers,
   setDiceRolling,
   setDiceValue,
 } = players.actions;

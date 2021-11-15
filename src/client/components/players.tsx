@@ -10,11 +10,19 @@ const Players: React.FC = () => {
 
   const playerDetails = (player: Player): string => {
     const name = player.name;
-    const responsibilities =
-      player.controls.length > 0 ? " (" + player.controls + ")" : "";
+    let controls = "";
+    if (player.controls.length > 0) {
+      controls += " (";
+      player.controls.forEach((control) => {
+        controls += `${control}, `;
+      });
+      controls = controls.slice(0, controls.length - 2);
+      controls += ")";
+    }
+
     const you = player.name === local ? " (You)" : "";
 
-    return name + you + responsibilities;
+    return name + you + controls;
   };
 
   const allPlayerDetails = all.map(playerDetails);
@@ -24,7 +32,7 @@ const Players: React.FC = () => {
   allPlayerDetails.sort();
 
   return (
-    <div>
+    <div style={{ flex: 2 }}>
       <h1>Players</h1>
       <ul>
         {allPlayerDetails.map((player) => (

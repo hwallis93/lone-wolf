@@ -34,12 +34,12 @@ const CombatTracker: React.FC = () => {
 
   return (
     <>
-      <h2 style={{ textAlign: "center", color: "red" }}>COMBAT</h2>
+      <h2 style={{ color: "red" }}>COMBAT</h2>
       <div
         style={{
           display: "grid",
-          gridTemplateColumns: "auto auto auto",
-          gap: "4px",
+          gridTemplateColumns: "repeat(3, max-content)",
+          gap: "10px",
         }}
       >
         <span />
@@ -49,26 +49,26 @@ const CombatTracker: React.FC = () => {
         <span>{combat.enemyCP}</span>
         <span>{combat.loneWolfCP}</span>
         <span>Endurance Points</span>
-        <span style={{ display: "flex", flexDirection: "column", gap: "1px" }}>
+        <span style={{ display: "flex", flexDirection: "row", gap: "1px" }}>
           {combat.enemyEP}
           {controls ? (
-            <>
+            <span style={{ paddingLeft: "10px" }}>
               <button onClick={increaseEnemyEP}>+</button>
               <button onClick={decreaseEnemyEP}>-</button>
-            </>
+            </span>
           ) : null}
         </span>
-        <span style={{ display: "flex", flexDirection: "column" }}>
+        <span style={{ display: "flex", flexDirection: "row" }}>
           {loneWolfEP}
           {controls ? (
-            <>
+            <span style={{ paddingLeft: "10px" }}>
               <button onClick={increaseLoneWolfEP}>+</button>
               <button onClick={decreaseLoneWolfEP}>-</button>
-            </>
+            </span>
           ) : null}
         </span>
       </div>
-      Damage Table
+      <div style={{ paddingTop: "10px" }}>Damage Table</div>
       <DamageTable CPDiff={CPDiff} />
       {controls ? (
         <button
@@ -158,16 +158,17 @@ const DamageTable: React.FC<{ CPDiff: number }> = ({ CPDiff }) => {
     borderTop: "1px solid black",
     borderLeft: "1px solid black",
     textAlign: "center",
+    padding: "3px",
   };
 
   return (
     <div
       style={{
         display: "grid",
-        gridTemplateColumns: "auto repeat(10, 25px)",
+        gridTemplateColumns: "max-content repeat(10, 25px)",
         borderBottom: "1px solid black",
         borderRight: "1px solid black",
-        paddingTop: "20px",
+        width: "max-content",
       }}
     >
       <span style={cell}>Dice Roll</span>
@@ -276,7 +277,9 @@ const CombatCreator: React.FC = () => {
         onChange={(event) => setLoneWolfCPField(event.target.value)}
       />
       <button onClick={createCombat}>Start combat</button>
-      {errors.length > 0 ? errors.map((error) => <div>{error}</div>) : null}
+      {errors.length > 0
+        ? errors.map((error) => <div style={{ color: "red" }}>{error}</div>)
+        : null}
     </span>
   );
 };

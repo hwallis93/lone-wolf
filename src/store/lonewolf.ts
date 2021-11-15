@@ -10,13 +10,13 @@ interface LoneWolfState {
   specialItems: string[];
 }
 const initialState: LoneWolfState = {
-  gold: 12,
-  endurancePoints: 23,
-  endurancePointsMax: 23,
-  disciplines: ["Camouflage", "Hunting"],
-  backpack: ["Meal", "Meal", "Friggin potion", "Something else"],
-  weapons: ["chopper", "stabber"],
-  specialItems: ["Map"],
+  gold: 0,
+  endurancePoints: 0,
+  endurancePointsMax: 0,
+  disciplines: [],
+  backpack: [],
+  weapons: [],
+  specialItems: [],
 };
 
 const adder =
@@ -41,6 +41,9 @@ export const loneWolf = createSlice({
       return action.payload;
     },
     reset: () => initialState,
+    setEPMax: (state, action: PayloadAction<number>) => {
+      state.endurancePointsMax = action.payload;
+    },
     addGold: (state, action: PayloadAction<number>) => {
       state.gold += action.payload;
       if (state.gold > 50) state.gold = 50;
@@ -66,6 +69,7 @@ export const loneWolf = createSlice({
 export const {
   overwriteLonewolf,
   reset,
+  setEPMax,
   addGold,
   addEndurancePoints,
   addToBackpack,
