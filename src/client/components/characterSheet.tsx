@@ -14,6 +14,7 @@ import { secretGmCode } from "../constants";
 import { useAppDispatch, useAppSelector } from "../store";
 import { Control } from "../types";
 import ItemList from "./itemList";
+import Stat from "./stat";
 
 const CharacterSheet: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -32,7 +33,6 @@ const CharacterSheet: React.FC = () => {
     state.players.all.find((player) => player.name === state.players.local)
   );
 
-  const diceControls = player?.controls.includes(Control.DICE) || isGM;
   const epControls =
     player?.controls.includes(Control.ENDURANCE_POINTS) || isGM;
   const goldControls = player?.controls.includes(Control.GOLD) || isGM;
@@ -43,28 +43,22 @@ const CharacterSheet: React.FC = () => {
     <div style={{ flex: 1 }}>
       <h1>Character Sheet</h1>
       <div style={{ display: "flex", flexDirection: "column" }}>
-        <div>
-          <span
-            style={{ paddingRight: "10px" }}
-          >{`Endurance Points (max. ${endurancePointsMax}): ${endurancePoints}`}</span>
-          {epControls ? (
-            <button onClick={() => dispatch(addEndurancePoints(1))}>+</button>
-          ) : null}
-          {epControls ? (
-            <button onClick={() => dispatch(addEndurancePoints(-1))}>-</button>
-          ) : null}
-        </div>
-        <div>
-          <span
-            style={{ paddingRight: "10px" }}
-          >{`Gold (max. 50): ${gold}`}</span>
-          {goldControls ? (
-            <button onClick={() => dispatch(addGold(1))}>+</button>
-          ) : null}
-          {goldControls ? (
-            <button onClick={() => dispatch(addGold(-1))}>-</button>
-          ) : null}
-        </div>
+        <Stat
+          title={"Endurance Points"}
+          value={endurancePoints}
+          controls={epControls}
+          max={endurancePointsMax}
+          incrementCallback={(change: number) =>
+            dispatch(addEndurancePoints(change))
+          }
+        />
+        <Stat
+          title={"Gold"}
+          value={gold}
+          controls={goldControls}
+          max={50}
+          incrementCallback={(change: number) => dispatch(addGold(change))}
+        />
         <ItemList
           title={"Disciplines"}
           controls={isGM}

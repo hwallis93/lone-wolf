@@ -35,13 +35,11 @@ socketServer.on("connection", (ws) => {
   ws.on("message", (actionBuffer: string) => {
     const actionObject = JSON.parse(actionBuffer);
     store.dispatch(actionObject);
-    console.log(actionObject);
     if (actionObject.type === players.name + "/setLocalPlayer") {
       localPlayer = actionObject.payload;
       ws.send(JSON.stringify(actionObject));
       return;
     }
-    console.log("Local player:" + localPlayer);
 
     broadcast(JSON.stringify(actionObject));
   }).on("close", () => {
