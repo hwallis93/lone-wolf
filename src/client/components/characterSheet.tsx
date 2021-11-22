@@ -9,6 +9,7 @@ import {
   removeFromBackpack,
   removeSpecialItem,
   removeWeapon,
+  setCombatSkill,
 } from "../../store/lonewolf";
 import { secretGmCode } from "../constants";
 import { useAppDispatch, useAppSelector } from "../store";
@@ -26,6 +27,7 @@ const CharacterSheet: React.FC = () => {
     disciplines,
     weapons,
     specialItems,
+    combatSkill,
   } = useAppSelector((state) => state.lonewolf);
   const isGM = useAppSelector((state) => state.players.local === secretGmCode);
 
@@ -43,6 +45,14 @@ const CharacterSheet: React.FC = () => {
     <div style={{ flex: 1 }}>
       <h1>Character Sheet</h1>
       <div style={{ display: "flex", flexDirection: "column" }}>
+        <Stat
+          title={"Combat Skill"}
+          value={combatSkill}
+          controls={isGM}
+          incrementCallback={(change: number) =>
+            dispatch(setCombatSkill(combatSkill + change))
+          }
+        />
         <Stat
           title={"Endurance Points"}
           value={endurancePoints}

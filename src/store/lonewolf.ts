@@ -4,6 +4,7 @@ interface LoneWolfState {
   gold: number;
   endurancePoints: number;
   endurancePointsMax: number;
+  combatSkill: number;
   disciplines: string[];
   backpack: string[];
   weapons: string[];
@@ -13,6 +14,7 @@ const initialState: LoneWolfState = {
   gold: 0,
   endurancePoints: 0,
   endurancePointsMax: 0,
+  combatSkill: 0,
   disciplines: [],
   backpack: [],
   weapons: [],
@@ -44,6 +46,9 @@ export const loneWolf = createSlice({
     setEPMax: (state, action: PayloadAction<number>) => {
       state.endurancePointsMax = action.payload;
     },
+    setCombatSkill: (state, action: PayloadAction<number>) => {
+      state.combatSkill = action.payload;
+    },
     addGold: (state, action: PayloadAction<number>) => {
       state.gold += action.payload;
       if (state.gold > 50) state.gold = 50;
@@ -71,6 +76,7 @@ export const {
   reset,
   setEPMax,
   addGold,
+  setCombatSkill,
   addEndurancePoints,
   addToBackpack,
   removeFromBackpack,

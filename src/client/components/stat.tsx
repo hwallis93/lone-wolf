@@ -2,7 +2,7 @@ interface Props {
   title: string;
   value: number;
   controls: boolean;
-  max: number;
+  max?: number;
   incrementCallback: (increment: number) => void;
 }
 const Stat: React.FC<Props> = ({
@@ -12,9 +12,10 @@ const Stat: React.FC<Props> = ({
   max,
   incrementCallback,
 }) => {
+  const maxString = max !== undefined ? `(max. ${max})` : "";
   return (
     <>
-      <span>{`${title} (max. ${max})`}</span>
+      <span>{`${title} ${maxString}`}</span>
       <div
         style={{
           display: "flex",
