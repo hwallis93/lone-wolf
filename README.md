@@ -7,7 +7,8 @@ TODO:
 - Favicon
 - Background sounds
 - Images
-- HTTPS access (needs WSS)
+- Better styling
+- Styling solution that's better than inline on components
 
 REFACTORS:
 - Change endurancePoints to EP everywhere
