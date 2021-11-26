@@ -4,6 +4,8 @@ import { store } from "./store";
 
 import App from "./components/app";
 
+import "./reset.css";
+
 ReactDOM.render(
   <Provider store={store}>
     <App />
