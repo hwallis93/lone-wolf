@@ -7,7 +7,7 @@ const buildDir = resolve(__dirname, "build");
 const sharedConfig = {
   mode: isProd ? "production" : "development",
   resolve: {
-    extensions: [".js", ".jsx", ".ts", ".tsx"],
+    extensions: [".js", ".jsx", ".ts", ".tsx", ".css"],
   },
   module: {
     rules: [
@@ -15,10 +15,6 @@ const sharedConfig = {
         test: /\.tsx?$/,
         use: "babel-loader",
         exclude: /node_modules/,
-      },
-      {
-        test: /\.css$/i,
-        use: ['style-loader', 'css-loader'],
       },
     ],
   },
@@ -28,6 +24,15 @@ const clientConfig = {
   ...sharedConfig,
   entry: {
     index: "./src/client/index.tsx",
+  },
+  module: {
+    rules: [
+      ...sharedConfig.module.rules,
+      {
+        test: /\.css$/i,
+        use: ['style-loader', 'css-loader'],
+      },
+    ],
   },
   output: {
     path: buildDir,

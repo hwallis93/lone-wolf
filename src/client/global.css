@@ -1,0 +1,21 @@
+:root {
+  --lone-wolf-shadow: 1px 2px 3px #ddd;
+}
+
+body {
+  font-size: 16px;
+  color: #424242;
+  font-family: Helvetica, sans-serif;
+  background-color: #fafafa;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: Helvetica, sans-serif;
+}
+
+main {
+  width: 100%;
+}

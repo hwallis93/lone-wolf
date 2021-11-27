@@ -5,6 +5,7 @@ import { store } from "./store";
 import App from "./components/app";
 
 import "./reset.css";
+import "./global.css";
 
 ReactDOM.render(
   <Provider store={store}>
