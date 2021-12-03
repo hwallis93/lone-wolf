@@ -1,0 +1,29 @@
+.Stat {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: min-content 1fr;
+  grid-template-areas:
+    "statTitle statTitle statTitle"
+    "statDecreaseButton statValue statIncreaseButton";
+  align-items: center;
+  row-gap: 0.5rem;
+  margin: 1rem 0;
+}
+
+.Stat__title {
+  grid-area: statTitle;
+}
+
+.Stat__decreaseButton {
+  grid-area: statDecreaseButton;
+}
+
+.Stat__value {
+  grid-area: statValue;
+  text-align: center;
+  font-size: 1.3rem;
+}
+
+.Stat__increaseButton {
+  grid-area: statIncreaseButton;
+}

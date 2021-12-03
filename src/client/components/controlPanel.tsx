@@ -13,6 +13,8 @@ import {
 import { setCombat } from "../../store/combat";
 import DownloadLink from "react-download-link";
 
+import "./controlPanel.css";
+
 const ControlPanel: React.FC = () => {
   const [overwriteInput, setOverwriteInput] = useState("");
   const [EPMaxInput, setEPMaxInput] = useState("");
@@ -46,21 +48,41 @@ const ControlPanel: React.FC = () => {
   };
 
   return (
-    <div
-      style={{ display: "flex", flexDirection: "column", gap: "10px", flex: 1 }}
-    >
+    <div className="ControlPanel">
       <h1>Control Panel</h1>
-      <button onClick={cycleResponsibilities}>Cycle Responsibilities</button>
-      <div>
-        <textarea value={overwriteInput} onChange={change}></textarea>
-        <button onClick={overwriteRedux}>Overwrite Redux</button>
-      </div>
-      Set EP Max:
-      <input
-        value={EPMaxInput}
-        onChange={(event) => setEPMaxInput(event.target.value)}
-        onKeyPress={handleEPMaxKepPress}
-      />
+
+      <button className="primary" onClick={cycleResponsibilities}>
+        Cycle Responsibilities
+      </button>
+
+      <hr />
+
+      <label>
+        Overwrite Redux
+        <textarea
+          value={overwriteInput}
+          onChange={change}
+          placeholder="Paste the JSON here to override redux state"
+        />
+      </label>
+
+      <button className="primary" onClick={overwriteRedux}>Overwrite Redux</button>
+
+      <hr />
+
+      <label>
+        Set EP Max:
+        <input
+          value={EPMaxInput}
+          onChange={(event) => setEPMaxInput(event.target.value)}
+          onKeyPress={handleEPMaxKepPress}
+          placeholder="Set maximum value for lone wolf EP"
+        />
+      </label>
+      <button className="primary" onClick={submitEPMax}>Change EP Max</button>
+
+      <hr />
+
       <button onClick={resetCharacterSheet}>Reset Character Sheet</button>
       <DownloadLink
         label="Save"

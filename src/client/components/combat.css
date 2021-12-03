@@ -1,0 +1,57 @@
+.CombatCreator {
+  margin: 1rem 0;
+}
+
+.CombatCreator label {
+  margin: 1rem 0;
+}
+
+.CombatCreator input {
+  margin: 0.5rem 0;
+}
+
+.CombatCreator button {
+  margin-block-start: 1rem;
+}
+
+.inputError {
+  color: #A00;
+}
+
+.DamageTable {
+  width: 100%;
+  display: grid;
+  grid-template-columns: max-content repeat(10, 1fr);
+  border-block-end: 1px solid black;
+  border-inline-end: 1px solid black;
+  margin: 1rem 0;
+}
+
+.DamageTable span {
+  border-block-start: 1px solid black;
+  border-inline-start: 1px solid black;
+  text-align: center;
+  padding: 0.25rem 0.75rem;
+}
+
+.CombatTracker__CombatTable {
+  display: grid;
+  grid-template-columns: repeat(3, max-content);
+  gap: 0.5rem 2rem;
+  font-size: 1.3rem;
+  align-items: center;
+  justify-items: center;
+  margin: 1rem 0;
+}
+
+.CombatTracker__CombatTable__Controls {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  column-gap: 0.5rem;
+  align-items: center;
+  justify-items: center;
+}
+
+.CombatTracker__CombatTable__Controls button {
+  min-width: 3rem;
+}

@@ -1,5 +1,5 @@
 import { ChangeEvent, KeyboardEvent, useState } from "react";
-import { Control } from "../types";
+import "./itemList.css";
 
 interface Props {
   title: string;
@@ -40,40 +40,34 @@ const ItemList: React.FC<Props> = ({
         value={input}
         onChange={change}
         onKeyPress={handleKeyPress}
-      ></input>
+        placeholder="Add a new item"
+      />
     </li>
   ) : null;
 
-  if (items.length === 0) {
-    return (
-      <>
-        {header}
-        <em style={{ padding: "5px 0px 10px 10px" }}>{"<Empty>"}</em>
-        {itemAdder}
-      </>
-    );
-  }
-
   return (
-    <>
-      {header}
-      <ul>
+    <div className="ItemList">
+      <h3 className="ItemList__title">{header}</h3>
+      <ul role="list" className="ItemList__items">
+        {items.length === 0 ? (
+          <li><em>{"<Empty>"}</em></li>
+        ) : null}
         {items.map((item) => (
           <li>
             {item}
             {controls ? (
               <button
-                style={{ color: "red", marginLeft: "10px" }}
+                className="ItemList__removeButton primary"
                 onClick={() => removeCallback(item)}
               >
-                X
+                ✖
               </button>
             ) : null}
           </li>
         ))}
         {itemAdder}
       </ul>
-    </>
+    </div>
   );
 };
 

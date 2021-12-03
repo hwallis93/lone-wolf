@@ -1,0 +1,27 @@
+.ItemList {
+  padding: 0;
+  margin: 1rem 0;
+}
+
+.ItemList__removeButton {
+  padding: 0.5rem 1.5rem;
+}
+
+.ItemList__items {
+  padding-inline-start: 2rem;
+  margin: 0.5rem 0;
+}
+
+.ItemList__items li {
+  display: grid;
+  grid-template-columns: min-content 1fr min-content;
+  grid-template-rows: 1fr;
+  align-items: center;
+  font-size: 1.3rem;
+  margin: 0.5rem 0;
+}
+
+.ItemList__items li::before {
+  content: '▶';
+  padding-inline-end: 0.5rem;
+}

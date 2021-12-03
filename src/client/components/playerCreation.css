@@ -6,10 +6,7 @@
   margin: 0 auto;
 }
 
-.PlayerCreation p,
-.PlayerCreation label,
-.PlayerCreation input,
-.PlayerCreation button {
+.PlayerCreation p {
   font-size: 1.3rem;
 }
 
@@ -19,35 +16,14 @@
 
 .PlayerCreation label {
   margin: 1rem 0;
-  display: block;
 }
 
 .PlayerCreation input {
-  display: block;
-  width: 100%;
   margin-block-start: 0.25rem;
-  padding: 0.4rem;
-  border-radius: 3px;
-  border: 1px solid #333;
-}
-
-.PlayerCreation input:focus {
-  outline: 2px solid #1a73e8;
 }
 
 .PlayerCreation button {
-  width: 100%;
-  background-color: #1a73e8;
-  color: #fff;
-  border: none;
-  border-radius: 3px;
-  padding: 0.5rem;
   margin-block-end: 1rem;
-}
-
-.PlayerCreation button:hover,
-.PlayerCreation button:focus {
-  background-color: #2b7de9;
 }
 
 @media screen and (max-width: 400px) {

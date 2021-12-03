@@ -3,6 +3,9 @@ import { disciplines } from "../constants";
 import { useAppDispatch, useAppSelector } from "../store";
 import { Discipline as iDiscipline } from "../types";
 
+import "./disciplines.css";
+import Modal from "./modal";
+
 const Disciplines: React.FC = () => {
   const dispatch = useAppDispatch();
   const showDisciplines = useAppSelector(
@@ -14,17 +17,11 @@ const Disciplines: React.FC = () => {
     dispatch(setShowDisciplines(!showDisciplines));
 
   return (
-    <div>
+    <div className="Disciplines">
       <h2>Disciplines</h2>
-      <button onClick={toggleShowDisciplines}>{buttonText}</button>
+      <button className="primary" onClick={toggleShowDisciplines}>{buttonText}</button>
       {showDisciplines ? (
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "auto auto",
-            gap: "10px",
-          }}
-        >
+        <Modal title="Disciplines" onClose={toggleShowDisciplines}>
           <Discipline discipline={disciplines.animalKinship} />
           <Discipline discipline={disciplines.camouflage} />
           <Discipline discipline={disciplines.healing} />
@@ -35,7 +32,7 @@ const Disciplines: React.FC = () => {
           <Discipline discipline={disciplines.sixthSense} />
           <Discipline discipline={disciplines.tracking} />
           <Discipline discipline={disciplines.weaponskill} />
-        </div>
+        </Modal>
       ) : null}
     </div>
   );
@@ -45,10 +42,10 @@ export default Disciplines;
 const Discipline: React.FC<{ discipline: iDiscipline }> = (props) => {
   const { name, tldr, description } = props.discipline;
   return (
-    <span style={{ display: "flex", flexDirection: "column" }}>
-      <strong>{name}</strong>
-      <em>{tldr}</em>
-      <span>{description}</span>
-    </span>
+    <div className="Discipline">
+      <h3>📚 {name}</h3>
+      <em>({tldr})</em>
+      <p>{description}</p>
+    </div>
   );
 };

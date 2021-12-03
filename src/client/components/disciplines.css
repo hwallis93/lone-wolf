@@ -1,0 +1,16 @@
+.Disciplines {
+  margin: 1rem 0;
+}
+
+.Disciplines > button {
+  margin-block-start: 0.5rem;
+}
+
+.Discipline {
+  font-size: 1.3rem;
+  margin: 1rem 0;
+}
+
+.Discipline p {
+  padding: 0.5rem 1rem;
+}

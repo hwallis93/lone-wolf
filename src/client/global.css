@@ -1,5 +1,5 @@
 :root {
-  --lone-wolf-shadow: 1px 2px 3px #ddd;
+  --lone-wolf-shadow: 1px 2px 3px #bbb;
 }
 
 body {
@@ -16,6 +16,87 @@ h4 {
   font-family: Helvetica, sans-serif;
 }
 
+h2 {
+  font-size: 1.5rem
+}
+
+h3 {
+  font-size: 1.3rem;
+}
+
 main {
   width: 100%;
+}
+
+label,
+input,
+button {
+  display: block;
+  font-size: 1.3rem;
+}
+
+input,
+textarea {
+  width: 100%;
+  padding: 0.4rem;
+  border-radius: 3px;
+  border: 1px solid #333;
+}
+
+input.invalid,
+textarea.invalid {
+  border: 1px solid #E00;
+}
+
+input:focus,
+textarea:focus {
+  outline: 2px solid #1a73e8;
+}
+
+input.invalid:focus,
+textarea.invalid:focus {
+  outline: 2px solid #A00;
+}
+
+button {
+  width: 100%;
+  border: none;
+  border-radius: 3px;
+  padding: 0.5rem;
+}
+
+button.primary {
+  background-color: #1a73e8;
+  color: #fff;
+}
+
+button.primary:hover,
+button.primary:focus {
+  background-color: #2b7de9;
+}
+
+button.primary:disabled {
+  background-color: #1a73e866;
+}
+
+@media screen and (min-width: 1000px) {
+  html {
+    margin-inline-start: calc(100vw - 100%);
+    margin-inline-end: 0;
+  }
+}
+
+#modal-root {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999;
+}
+
+#modal-root > div {
+  background-color: rgba(0,0,0,0.5);
+  display: grid;
+  place-items: center;
+  width: 100vw;
+  height: 100vh;
 }
