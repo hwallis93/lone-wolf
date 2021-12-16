@@ -1,0 +1,24 @@
+.ControlPanel {
+  grid-column: 1 / span 2;
+}
+
+.ControlPanel h1 {
+  margin-block-end: 1rem;
+}
+
+.ControlPanel hr {
+  border: 1px dashed #555;
+  margin: 1rem 0;
+}
+
+.ControlPanel label {
+  margin: 1rem 0;
+}
+
+.ControlPanel input {
+  margin-block-start: 0.25rem;
+}
+
+.ControlPanel button {
+  margin-block-end: 1rem;
+}

@@ -1,0 +1,22 @@
+.Players {
+  padding: 1rem;
+}
+
+.Players__items {
+  padding-inline-start: 2rem;
+  margin: 0.5rem 0;
+}
+
+.Players__items li {
+  display: grid;
+  grid-template-columns: min-content 1fr min-content;
+  grid-template-rows: 1fr;
+  align-items: center;
+  font-size: 1.3rem;
+  margin: 0.5rem 0;
+}
+
+.Players__items li::before {
+  content: '🎮';
+  padding-inline-end: 0.5rem;
+}

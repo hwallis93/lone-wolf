@@ -46,7 +46,7 @@ const PlayerCreation: React.FC = () => {
           onChange={change}
         />
       </label>
-      <button type="submit">
+      <button className="primary" type="submit">
         Join
       </button>
     </form>

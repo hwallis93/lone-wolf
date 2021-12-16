@@ -1,0 +1,17 @@
+.MainWindow {
+  width: 100%;
+  padding: 1rem;
+  background-color: #fff;
+}
+
+@media screen and (min-width: 1000px) {
+  .MainWindow {
+    display: grid;
+    grid-template-columns: 400px 1fr;
+    gap: 0.5rem;
+    width: 1000px;
+    margin: 0 auto;
+    border-radius: 5px;
+    box-shadow: var(--lone-wolf-shadow);
+  }
+}

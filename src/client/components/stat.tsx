@@ -1,3 +1,5 @@
+import "./stat.css";
+
 interface Props {
   title: string;
   value: number;
@@ -14,34 +16,40 @@ const Stat: React.FC<Props> = ({
 }) => {
   const maxString = max !== undefined ? `(max. ${max})` : "";
   return (
-    <>
-      <span>{`${title} ${maxString}`}</span>
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "row",
-          marginLeft: "30px",
-        }}
-      >
-        {controls ? (
-          <button
-            onClick={() => incrementCallback(-1)}
-            style={{ marginRight: "10px", alignSelf: "center" }}
-          >
-            -
-          </button>
-        ) : null}
-        <span style={{ textAlign: "center", fontSize: "30px" }}>{value}</span>
-        {controls ? (
-          <button
-            onClick={() => incrementCallback(1)}
-            style={{ marginLeft: "10px", alignSelf: "center" }}
-          >
-            +
-          </button>
-        ) : null}
-      </div>
-    </>
+    <div className="Stat">
+      <h3 className="Stat__title">{`${title} ${maxString}`}</h3>
+      {controls ? (
+        <button
+          className="Stat__decreaseButton primary"
+          onClick={() => incrementCallback(-1)}
+        >
+          -
+        </button>
+      ) : (
+        <button
+          className="Stat__decreaseButton primary"
+          disabled
+        >
+          -
+        </button>
+      )}
+      <p className="Stat__value">{value}</p>
+      {controls ? (
+        <button
+          className="Stat__increaseButton primary"
+          onClick={() => incrementCallback(1)}
+        >
+          +
+        </button>
+      ) : (
+        <button
+          className="Stat__increaseButton primary"
+          disabled
+        >
+          +
+        </button>
+      )}
+    </div>
   );
 };
 export default Stat;

@@ -1,0 +1,26 @@
+.Modal {
+  background-color: #fff;
+  border-radius: 5px;
+  max-width: 600px;
+  max-height: calc(100vh - 4rem);
+  display: grid;
+  grid-template-rows: min-content 1fr;
+  grid-template-columns: 1fr;
+}
+
+.Modal > header {
+  display: grid;
+  grid-template-columns: 1fr min-content;
+  border-bottom: 1px solid #00000099;
+  padding: 0.5rem 1rem;
+  align-items: center;
+}
+
+.Modal > header button {
+  padding: 0.5rem 1rem;
+}
+
+.Modal > section {
+  padding: 1rem 2rem;
+  overflow-y: auto;
+}

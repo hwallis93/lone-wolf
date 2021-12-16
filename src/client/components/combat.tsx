@@ -6,6 +6,8 @@ import { hasControls } from "../../store/selectors";
 import { useAppDispatch, useAppSelector } from "../store";
 import { Control } from "../types";
 
+import "./combat.css";
+
 const Combat: React.FC = () => {
   const combatIsActive = useAppSelector((state) => state.combat !== null);
   const controls = useAppSelector(hasControls(Control.COMBAT));
@@ -33,52 +35,78 @@ const CombatTracker: React.FC = () => {
   if (CPDiff > 11) CPDiff = 11;
 
   return (
-    <>
-      <h2 style={{ color: "red" }}>COMBAT</h2>
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(3, max-content)",
-          gap: "10px",
-        }}
-      >
+    <div className="CombatTracker">
+      <h2>💥 Combat</h2>
+      <div className="CombatTracker__CombatTable" role="table">
         <span />
         <strong>{combat.enemyName}</strong>
-        <strong>Lone Wolf</strong>
-        <span>Combat Points</span>
+        <strong>🐺 Lone Wolf</strong>
+        <strong>🤺 CS</strong>
         <span>{combat.enemyCP}</span>
         <span>{combat.loneWolfCP}</span>
-        <span>Endurance Points</span>
-        <span style={{ display: "flex", flexDirection: "row", gap: "1px" }}>
-          {combat.enemyEP}
+        <strong>🩸 EP</strong>
+        <span className="CombatTracker__CombatTable__Controls">
           {controls ? (
-            <span style={{ paddingLeft: "10px" }}>
-              <button onClick={increaseEnemyEP}>+</button>
-              <button onClick={decreaseEnemyEP}>-</button>
-            </span>
-          ) : null}
+            <button
+              className="primary"
+              onClick={increaseEnemyEP}
+            >+</button>
+          ) : (
+            <button
+              className="primary"
+              disabled
+            >+</button>
+          )}
+          <p>{combat.enemyEP}</p>
+          {controls ? (
+            <button
+              className="primary"
+              onClick={decreaseEnemyEP}
+            >-</button>
+          ) : (
+            <button
+              className="primary"
+              disabled
+            >-</button>
+          )}
         </span>
-        <span style={{ display: "flex", flexDirection: "row" }}>
-          {loneWolfEP}
+        <span className="CombatTracker__CombatTable__Controls">
           {controls ? (
-            <span style={{ paddingLeft: "10px" }}>
-              <button onClick={increaseLoneWolfEP}>+</button>
-              <button onClick={decreaseLoneWolfEP}>-</button>
-            </span>
-          ) : null}
+            <button
+              className="primary"
+              onClick={increaseLoneWolfEP}
+            >+</button>
+          ) : (
+            <button
+              className="primary"
+              disabled
+            >+</button>
+          )}
+          <p>{loneWolfEP}</p>
+          {controls ? (
+            <button
+              className="primary"
+              onClick={decreaseLoneWolfEP}
+            >-</button>
+          ) : (
+            <button
+              className="primary"
+              disabled
+            >-</button>
+          )}
         </span>
       </div>
-      <div style={{ paddingTop: "10px" }}>Damage Table</div>
+      <h3>Damage Table</h3>
       <DamageTable CPDiff={CPDiff} />
       {controls ? (
         <button
-          style={{ marginTop: "10px" }}
+          className="primary"
           onClick={() => dispatch(setCombat(null))}
         >
           End Combat
         </button>
       ) : null}
-    </>
+    </div>
   );
 };
 
@@ -154,132 +182,167 @@ const DamageTable: React.FC<{ CPDiff: number }> = ({ CPDiff }) => {
   };
   const damageTable = calcDamageTable();
 
-  const cell: React.CSSProperties = {
-    borderTop: "1px solid black",
-    borderLeft: "1px solid black",
-    textAlign: "center",
-    padding: "3px",
-  };
-
   return (
-    <div
-      style={{
-        display: "grid",
-        gridTemplateColumns: "max-content repeat(10, 25px)",
-        borderBottom: "1px solid black",
-        borderRight: "1px solid black",
-        width: "max-content",
-      }}
-    >
-      <span style={cell}>Dice Roll</span>
-      <span style={cell}>1</span>
-      <span style={cell}>2</span>
-      <span style={cell}>3</span>
-      <span style={cell}>4</span>
-      <span style={cell}>5</span>
-      <span style={cell}>6</span>
-      <span style={cell}>7</span>
-      <span style={cell}>8</span>
-      <span style={cell}>9</span>
-      <span style={cell}>0</span>
-      <span style={cell}>Lone Wolf Damage</span>
-      <span style={cell}>{damageTable[1][0]}</span>
-      <span style={cell}>{damageTable[2][0]}</span>
-      <span style={cell}>{damageTable[3][0]}</span>
-      <span style={cell}>{damageTable[4][0]}</span>
-      <span style={cell}>{damageTable[5][0]}</span>
-      <span style={cell}>{damageTable[6][0]}</span>
-      <span style={cell}>{damageTable[7][0]}</span>
-      <span style={cell}>{damageTable[8][0]}</span>
-      <span style={cell}>{damageTable[9][0]}</span>
-      <span style={cell}>{damageTable[0][0]}</span>
-      <span style={cell}>Enemy Damage</span>
-      <span style={cell}>{damageTable[1][1]}</span>
-      <span style={cell}>{damageTable[2][1]}</span>
-      <span style={cell}>{damageTable[3][1]}</span>
-      <span style={cell}>{damageTable[4][1]}</span>
-      <span style={cell}>{damageTable[5][1]}</span>
-      <span style={cell}>{damageTable[6][1]}</span>
-      <span style={cell}>{damageTable[7][1]}</span>
-      <span style={cell}>{damageTable[8][1]}</span>
-      <span style={cell}>{damageTable[9][1]}</span>
-      <span style={cell}>{damageTable[0][1]}</span>
+    <div className="DamageTable" role="table">
+      <span>Dice Roll</span>
+      <span>1</span>
+      <span>2</span>
+      <span>3</span>
+      <span>4</span>
+      <span>5</span>
+      <span>6</span>
+      <span>7</span>
+      <span>8</span>
+      <span>9</span>
+      <span>0</span>
+      <span>Lone Wolf Damage</span>
+      <span>{damageTable[1][0]}</span>
+      <span>{damageTable[2][0]}</span>
+      <span>{damageTable[3][0]}</span>
+      <span>{damageTable[4][0]}</span>
+      <span>{damageTable[5][0]}</span>
+      <span>{damageTable[6][0]}</span>
+      <span>{damageTable[7][0]}</span>
+      <span>{damageTable[8][0]}</span>
+      <span>{damageTable[9][0]}</span>
+      <span>{damageTable[0][0]}</span>
+      <span>Enemy Damage</span>
+      <span>{damageTable[1][1]}</span>
+      <span>{damageTable[2][1]}</span>
+      <span>{damageTable[3][1]}</span>
+      <span>{damageTable[4][1]}</span>
+      <span>{damageTable[5][1]}</span>
+      <span>{damageTable[6][1]}</span>
+      <span>{damageTable[7][1]}</span>
+      <span>{damageTable[8][1]}</span>
+      <span>{damageTable[9][1]}</span>
+      <span>{damageTable[0][1]}</span>
     </div>
   );
 };
 
+interface Field {
+  value?: number|string;
+  error?: string;
+}
+
 const CombatCreator: React.FC = () => {
   const dispatch = useAppDispatch();
-  const [enemyNameField, setEnemyNameField] = useState("");
-  const [enemyEPField, setEnemyEPField] = useState("");
-  const [enemyCPField, setEnemyCPField] = useState("");
-  const [loneWolfCPField, setLoneWolfCPField] = useState("");
 
-  const [errors, setErrors] = useState<string[]>([]);
+  const [enemyNameField, setEnemyNameField] = useState<Field>({ value: "", error: "" });
+  const [enemyEPField, setEnemyEPField] = useState<Field>({ value: "", error: "" });
+  const [enemyCPField, setEnemyCPField] = useState<Field>({ value: "", error: "" });
+  const [loneWolfCPField, setLoneWolfCPField] = useState<Field>({ value: "", error: "" });
 
-  const createCombat = () => {
-    const errs: string[] = [];
-    if (enemyNameField.trim() === "") errs.push("Enemy name can't be blank");
 
-    const enemyEPAsNumber = parseInt(enemyEPField);
-    if (isNaN(enemyEPAsNumber))
-      errs.push("Enemy Endurance Points must be a number");
-    if (enemyEPAsNumber <= 0)
-      errs.push("Enemy Endurance Points must be greater than 0");
+  const onEnemyNameChange: React.ChangeEventHandler<HTMLInputElement> = (event) => {
+    const value = event.target.value;
 
-    const enemyCPAsNumber = parseInt(enemyCPField);
-    if (isNaN(enemyCPAsNumber))
-      errs.push("Enemy Combat Skill must be a number");
-    if (enemyCPAsNumber <= 0)
-      errs.push("Enemy Combat Skill must be greater than 0");
-
-    const loneWolfCPAsNumber = parseInt(loneWolfCPField);
-    if (isNaN(loneWolfCPAsNumber))
-      errs.push("Lone Wolf Combat Skill must be a number");
-    if (loneWolfCPAsNumber <= 0)
-      errs.push("Lone Wolf Combat Skill must be greater than 0");
-
-    if (errs.length) {
-      setErrors(errs);
-    } else {
-      dispatch(
-        setCombat({
-          enemyName: enemyNameField,
-          enemyCP: enemyCPAsNumber,
-          enemyEP: enemyEPAsNumber,
-          loneWolfCP: loneWolfCPAsNumber,
-        })
-      );
-      setErrors([]);
+    if (!value.trim()) {
+      setEnemyNameField({ value, error: "Enemy name can't be blank" });
+      return;
     }
+
+    setEnemyNameField({ value, error: "" });
+  }
+
+  const onNumberChange = (setFn: React.Dispatch<React.SetStateAction<Field>>):
+    React.ChangeEventHandler<HTMLInputElement> => (event) => {
+    const value = event.target.value;
+
+    const valueAsNumber = parseInt(value, 10);
+    if (isNaN(valueAsNumber)) {
+      setFn({
+        value: value,
+        error: "Value must be a number"
+      });
+      return;
+    }
+
+    if (valueAsNumber <= 0) {
+      setFn({
+        value: valueAsNumber,
+        error: "Value must be greater than 0"
+      });
+      return;
+    }
+
+    setFn({
+      value: valueAsNumber,
+      error: ""
+    });
+  }
+
+  const createCombat: React.FormEventHandler = (event) => {
+    event.preventDefault();
+
+    dispatch(
+      setCombat({
+        enemyName: enemyNameField.value as string,
+        enemyCP: enemyCPField.value as number,
+        enemyEP: enemyEPField.value as number,
+        loneWolfCP: loneWolfCPField.value as number,
+      })
+    );
   };
+
   return (
-    <span style={{ display: "flex", flexDirection: "column" }}>
+    <form className="CombatCreator" onSubmit={createCombat}>
       <h2>Combat Creator</h2>
-      Enemy name:
-      <input
-        value={enemyNameField}
-        onChange={(event) => setEnemyNameField(event.target.value)}
-      />
-      Enemy Endurance Points:
-      <input
-        value={enemyEPField}
-        onChange={(event) => setEnemyEPField(event.target.value)}
-      />
-      Enemy Combat Skill:
-      <input
-        value={enemyCPField}
-        onChange={(event) => setEnemyCPField(event.target.value)}
-      />
-      Lone Wolf Combat Skill:
-      <input
-        value={loneWolfCPField}
-        onChange={(event) => setLoneWolfCPField(event.target.value)}
-      />
-      <button onClick={createCombat}>Start combat</button>
-      {errors.length > 0
-        ? errors.map((error) => <div style={{ color: "red" }}>{error}</div>)
-        : null}
-    </span>
+      <label>
+        👾 Enemy name:
+        <input
+          className={enemyNameField.error ? "invalid" : ""}
+          type="text"
+          required
+          value={enemyNameField.value}
+          onChange={onEnemyNameChange}
+          placeholder="Enter the enemy name value"
+        />
+        {enemyNameField.error && (<p className="inputError">{enemyNameField.error}</p>)}
+      </label>
+      <label>
+        🩸 Enemy Endurance Points:
+        <input
+          className={enemyEPField.error ? "invalid" : ""}
+          type="text"
+          pattern="[1-9][0-9]*"
+          required
+          value={enemyEPField.value}
+          onChange={onNumberChange(setEnemyEPField)}
+          placeholder="Enter the enemy EP value"
+        />
+        {enemyEPField.error && (<p className="inputError">{enemyEPField.error}</p>)}
+      </label>
+      <label>
+        🤺 Enemy Combat Skill:
+        <input
+          className={enemyCPField.error ? "invalid" : ""}
+          type="text"
+          pattern="[1-9][0-9]*"
+          required
+          value={enemyCPField.value}
+          onChange={onNumberChange(setEnemyCPField)}
+          placeholder="Enter the enemy CS value"
+        />
+        {enemyCPField.error && (<p className="inputError">{enemyCPField.error}</p>)}
+      </label>
+      <label>
+        🐺 Lone Wolf Combat Skill:
+        <input
+          className={loneWolfCPField.error ? "invalid" : ""}
+          type="text"
+          pattern="[1-9][0-9]*"
+          required
+          value={loneWolfCPField.value}
+          onChange={onNumberChange(setLoneWolfCPField)}
+          placeholder="Enter your current CS value"
+        />
+        {loneWolfCPField.error && (<p className="inputError">{loneWolfCPField.error}</p>)}
+      </label>
+      <button className="primary" type="submit">
+        Start combat
+      </button>
+    </form>
   );
 };

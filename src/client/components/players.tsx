@@ -4,6 +4,8 @@ import Combat from "./combat";
 import Dice from "./dice";
 import Disciplines from "./disciplines";
 
+import "./players.css";
+
 const Players: React.FC = () => {
   const { local, all } = useAppSelector((state) => state.players);
   const gmName = useAppSelector((state) => state.gm.name);
@@ -32,9 +34,9 @@ const Players: React.FC = () => {
   allPlayerDetails.sort();
 
   return (
-    <div style={{ flex: 2 }}>
-      <h1>Players</h1>
-      <ul>
+    <section className="Players">
+      <h2>Players</h2>
+      <ul role="list" className="Players__items">
         {allPlayerDetails.map((player) => (
           <li>{player}</li>
         ))}
@@ -42,7 +44,7 @@ const Players: React.FC = () => {
       <Dice />
       <Combat />
       <Disciplines />
-    </div>
+    </section>
   );
 };
 

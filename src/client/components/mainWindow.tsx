@@ -4,17 +4,19 @@ import CharacterSheet from "./characterSheet";
 import ControlPanel from "./controlPanel";
 import Players from "./players";
 
+import "./mainWindow.css";
+
 const MainWindow: React.FC = () => {
   const playerIsGM = useAppSelector(
     (state) => state.players.local === secretGmCode
   );
 
   return (
-    <div style={{ display: "flex", gap: "50px" }}>
+    <section className="MainWindow">
       <CharacterSheet />
       <Players />
       {playerIsGM ? <ControlPanel /> : null}
-    </div>
+    </section>
   );
 };
 

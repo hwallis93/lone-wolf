@@ -4,6 +4,8 @@ import { secretGmCode } from "../constants";
 import { useAppDispatch, useAppSelector } from "../store";
 import { Control } from "../types";
 
+import "./dice.css";
+
 const Dice: React.FC = () => {
   const dispatch = useAppDispatch();
   const { diceRolling } = useAppSelector((state) => state.players);
@@ -25,12 +27,24 @@ const Dice: React.FC = () => {
   };
 
   return (
-    <div>
+    <div className="Dice">
       <h2>Dice</h2>
       {square}
       {diceControls ? (
-        <button onClick={rollTheDice}>Roll the dice!</button>
-      ) : null}
+        <button
+          className="primary"
+          onClick={rollTheDice}
+        >
+          Roll the dice!
+        </button>
+      ) : (
+        <button
+          className="primary"
+          disabled
+        >
+          Roll the dice!
+        </button>
+      )}
     </div>
   );
 };
@@ -50,15 +64,7 @@ const Rolling: React.FC = () => {
   });
 
   return (
-    <div
-      style={{
-        width: "40px",
-        height: "40px",
-        border: "2px solid black",
-        fontSize: "30px",
-        textAlign: "center",
-      }}
-    >
+    <div className="Dice__square">
       {value}
     </div>
   );
@@ -67,15 +73,7 @@ const Stationary: React.FC = () => {
   const { diceValue } = useAppSelector((state) => state.players);
 
   return (
-    <div
-      style={{
-        width: "40px",
-        height: "40px",
-        border: "2px solid black",
-        fontSize: "30px",
-        textAlign: "center",
-      }}
-    >
+    <div className="Dice__square">
       {diceValue}
     </div>
   );
